@@ -1,8 +1,11 @@
 INSERT INTO Teams (City, Mascot, Division, Conference)
 
-Values ('Indianapolis', 'Colts', 'AFC South', 'AFC'),
-		('Jacksonville', 'Jaguars', 'AFC South', 'AFC'),
-        ('Kansas City', 'Chiefs', 'AFC West', 'AFC');
+Values ('Pittsburgh', 'Steelers', 'AFC North', 'AFC'),
+		('San Francisco', '49ers', 'NFC West', 'NFC'),
+        ('Seattle', 'Seahawks', 'NFC West', 'NFC'),
+        ('Tampa Bay', 'Buccaneers', 'NFC South', 'NFC'),
+        ('Tennessee', 'Titans', 'AFC East', 'AFC'),
+        ('Washington', 'Commanders', 'NFC East', 'NFC');
 
 SELECT * FROM Teams;
 
