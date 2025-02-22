@@ -1,3 +1,24 @@
+-- Creating the Teams Table
+Create Table Teams (
+	id int Primary Key Auto_Increment,
+    City varchar(50),
+    Mascot varchar(50) Unique,
+    Wins int DEFAULT 0,
+    Losses int DEFAULT 0,
+    ConferenceWins int DEFAULT 0,
+    ConferenceLosses int DEFAULT 0,
+    DivisionWins int DEFAULT 0,
+    DivisionLosses int DEFAULT 0,
+    Division varchar(25),
+    Conference varchar(3)
+);
+
+-- Adding all of the teams to the table
+Insert Into Teams (City, Mascot, Division, Conference)
+Values(
+	('Arizona', 'Cardinals', 'NFC West', 'NFC')
+);
+
 -- Creating the NFC Table
 Create Table NFC (
 	teamID int Primary Key,
@@ -186,5 +207,5 @@ Create Table nfcWest (
 Insert into nfcWest(teamId, City, Mascot) Select id, City, Mascot from Teams 
 Where Division = 'NFC West';
 
-Select * from nfcWest;
+Select * from Teams;
 
