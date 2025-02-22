@@ -122,5 +122,69 @@ Create Table afcWest (
 Insert into afcWest(teamId, City, Mascot) Select id, City, Mascot from Teams 
 Where Division = 'AFC West';
 
+-- NFC North Creation
+Create Table nfcNorth (
+	teamId int Primary Key,
+    City varchar(50),
+    Mascot varchar(50) Unique,
+    Wins int DEFAULT 0,
+    Losses int DEFAULT 0,
+    DivisionWins int DEFAULT 0,
+    DivisionLosses int DEFAULT 0,
+    Foreign Key(teamID) References Teams(id)
+);
 
-Select * from afcWest;
+-- Adding NFC North Teams from the Teams table
+Insert into nfcNorth(teamId, City, Mascot) Select id, City, Mascot from Teams 
+Where Division = 'NFC North';
+
+-- NFC South Creation
+Create Table nfcSouth (
+	teamId int Primary Key,
+    City varchar(50),
+    Mascot varchar(50) Unique,
+    Wins int DEFAULT 0,
+    Losses int DEFAULT 0,
+    DivisionWins int DEFAULT 0,
+    DivisionLosses int DEFAULT 0,
+    Foreign Key(teamID) References Teams(id)
+);
+
+-- Adding NFC South Teams from the Teams table
+Insert into nfcSouth(teamId, City, Mascot) Select id, City, Mascot from Teams 
+Where Division = 'NFC South';
+
+-- NFC East Creation
+Create Table nfcEast (
+	teamId int Primary Key,
+    City varchar(50),
+    Mascot varchar(50) Unique,
+    Wins int DEFAULT 0,
+    Losses int DEFAULT 0,
+    DivisionWins int DEFAULT 0,
+    DivisionLosses int DEFAULT 0,
+    Foreign Key(teamID) References Teams(id)
+);
+
+-- Adding NFC East Teams from the Teams table
+Insert into nfcEast(teamId, City, Mascot) Select id, City, Mascot from Teams 
+Where Division = 'NFC East';
+
+-- NFC West Creation
+Create Table nfcWest (
+	teamId int Primary Key,
+    City varchar(50),
+    Mascot varchar(50) Unique,
+    Wins int DEFAULT 0,
+    Losses int DEFAULT 0,
+    DivisionWins int DEFAULT 0,
+    DivisionLosses int DEFAULT 0,
+    Foreign Key(teamID) References Teams(id)
+);
+
+-- Adding NFC West teams from the Teams table
+Insert into nfcWest(teamId, City, Mascot) Select id, City, Mascot from Teams 
+Where Division = 'NFC West';
+
+Select * from nfcWest;
+
