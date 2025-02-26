@@ -222,5 +222,14 @@ Create Table regSeasonSchedule (
 Insert into regSeasonSchedule(teamId, City, Mascot) 
 Select id, City, Mascot from Teams;
 
+-- Adding in the schedule information for the Arizona Cardinals
+Update regSeasonSchedule Set week1 = 4 where teamId = 1;
+
+Update regSeasonSchedule Set 
+week2 = 19, week3 = 11, week4 = 32, week5 = 28, week6 = 12, week7 = 18, week8 = 20,
+week9 = 6, week10 = 25, week12 = 29, week13 = 21, week14 = 29, week15 = 22, week16 = 5,
+week17 = 19, week18 = 28
+Where teamId = 1;
+
 Select * from regSeasonSchedule;
 
