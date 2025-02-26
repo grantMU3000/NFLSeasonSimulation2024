@@ -231,5 +231,26 @@ week9 = 6, week10 = 25, week12 = 29, week13 = 21, week14 = 29, week15 = 22, week
 week17 = 19, week18 = 28
 Where teamId = 1;
 
+-- Adding in schedule information for the Atlanta Falcons
+Update regSeasonSchedule Set
+week1 = 27, week2 = 26, week3 = 16, week4 = 23, week5 = 30, week6 = 5, week7 = 29, 
+week8 = 30, week9 = 9, week10 = 23, week11 = 10, week13 = 18, week14 = 21, week15 = 17,
+week16 = 24, week17 = 32, week18 = 5
+Where teamId = 2;
+
+-- Adding in schedule information for the Baltimore Ravens
+Update regSeasonSchedule Set
+week1 = 16, week2 = 17, week3 = 9, week4 = 4, week5 = 7, week6 = 32, week7 = 30, week8 = 8,
+week9 = 10, week10 = 7, week11 = 27, week12 = 18, week13 = 26, week15 = 24, week16 = 27,
+week17 = 13, week18 = 8
+Where teamId = 3;
+
+-- Adding in schedule information for the Buffalo Bills
+Update regSeasonSchedule Set
+week1 = 1, week2 = 20, week3 = 15, week4 = 3, week5 = 13, week6 = 25, week7 = 31, week8 = 29,
+week9 = 20, week10 = 14, week11 = 16, week13 = 28, week14 = 19, week15 = 11, week16 = 22,
+week17 = 25, week18 = 22
+Where teamId = 4;
+
 Select * from regSeasonSchedule;
 
