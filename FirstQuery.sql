@@ -207,5 +207,20 @@ Create Table nfcWest (
 Insert into nfcWest(teamId, City, Mascot) Select id, City, Mascot from Teams 
 Where Division = 'NFC West';
 
-Select * from Teams;
+-- Making the Schedule for each team
+Create Table regSeasonSchedule (
+	teamId int Primary Key,
+    City varchar(50),
+    Mascot varchar(50) Unique,
+    week1 int, week2 int, week3 int, week4 int, week5 int, week6 int,
+    week7 int, week8 int, week9 int, week10 int, week11 int, week12 int,
+    week13 int, week14 int, week15 int, week16 int, week17 int, week18 int,
+    Foreign Key(teamID) References Teams(id)
+);
+
+-- adding all of the teams to the regular season schedule table
+Insert into regSeasonSchedule(teamId, City, Mascot) 
+Select id, City, Mascot from Teams;
+
+Select * from regSeasonSchedule;
 
