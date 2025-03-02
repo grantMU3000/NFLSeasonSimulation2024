@@ -336,6 +336,47 @@ week9 = 30, week10 = 10, week11 = 4, week12 = 5, week13 = 17, week14 = 18, week1
 week16 = 13, week17 = 27, week18 = 10
 Where teamId = 16;
 
+-- Adding in schedule information for the Las Vegas Raiders
+Update regSeasonSchedule Set 
+week1 = 18, week2 = 3, week3 = 5, week4 = 8, week5 = 10, week6 = 27, week7 = 19, week8 = 16, 
+week9 = 7, week10 = null, week11 = 20, week12 = 10, week13 = 16, week14 = 30, week15 = 2, 
+week16 = 15, week17 = 23, week18 = 18
+Where teamId = 17;
+
+-- Adding in schedule information for the Los Angeles Chargers
+Update regSeasonSchedule Set 
+week1 = 17, week2 = 5, week3 = 27, week4 = 16, week5 = null, week6 = 10, week7 = 1, week8 = 23, 
+week9 = 8, week10 = 31, week11 = 7, week12 = 3, week13 = 2, week14 = 16, week15 = 30, 
+week16 = 10, week17 = 22, week18 = 17
+Where teamId = 18;
+
+-- Adding in schedule information for the Los Angeles Rams
+Update regSeasonSchedule Set 
+week1 = 11, week2 = 1, week3 = 28, week4 = 6, week5 = 12, week6 = null, week7 = 17, week8 = 21, 
+week9 = 29, week10 = 20, week11 = 22, week12 = 26, week13 = 23, week14 = 4, week15 = 28, 
+week16 = 25, week17 = 1, week18 = 29
+Where teamId = 19;
+
+-- Adding in schedule information for the Miami Dolphins
+Update regSeasonSchedule Set 
+week1 = 15, week2 = 4, week3 = 29, week4 = 31, week5 = 22, week6 = null, week7 = 14, week8 = 1, 
+week9 = 4, week10 = 19, week11 = 17, week12 = 22, week13 = 12, week14 = 25, week15 = 13, 
+week16 = 28, week17 = 8, week18 = 25
+Where teamId = 20;
+
+-- Adding in schedule information for the Minnesota Vikings
+Update regSeasonSchedule Set 
+week1 = 24, week2 = 28, week3 = 13, week4 = 12, week5 = 25, week6 = null, week7 = 11, week8 = 19, 
+week9 = 14, week10 = 15, week11 = 31, week12 = 6, week13 = 1, week14 = 2, week15 = 6, 
+week16 = 29, week17 = 12, week18 = 11
+Where teamId = 21;
+
+-- Adding in schedule information for the New England Patriots
+Update regSeasonSchedule Set 
+week1 = 7, week2 = 29, week3 = 25, week4 = 28, week5 = 20, week6 = 13, week7 = 15, week8 = 25, 
+week9 = 31, week10 = 6, week11 = 19, week12 = 20, week13 = 14, week14 = null, week15 = 1, 
+week16 = 4, week17 = 18, week18 = 4
+Where teamId = 22;
 
 Select * from regSeasonSchedule;
 
