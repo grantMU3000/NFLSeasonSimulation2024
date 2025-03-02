@@ -252,5 +252,47 @@ week9 = 20, week10 = 14, week11 = 16, week13 = 28, week14 = 19, week15 = 11, wee
 week17 = 25, week18 = 22
 Where teamId = 4;
 
+-- Adding in schedule information for the Carolina Panthers
+Update regSeasonSchedule Set
+week1 = 23, week2 = 18, week3 = 17, week4 = 7, week5 = 6, week6 = 2, week7 = 32, week8 = 10,
+week9 = 23, week10 = 24, week12 = 16, week13 = 30, week14 = 26, week15 = 9, week16 = 1,
+week17 = 30, week18 = 2
+Where teamId = 5;
+
+-- Adding in schedule information for the Chicago Bears
+Update regSeasonSchedule Set
+week1 = 31, week2 = 13, week3 = 14, week4 = 19, week5 = 5, week6 = 15, week8 = 32, week9 = 1,
+week10 = 22, week11 = 12, week12 = 21, week13 = 11, week14 = 28, week15 = 21, week16 = 11,
+week17 = 29, week18 = 12
+Where teamId = 6;
+
+-- Adding in schedule information for the Cincinnati Bengals
+Update regSeasonSchedule Set
+week1 = 22, week2 = 16, week3 = 32, week4 = 5, week5 = 3, week6 = 24, week7 = 8, week8 = 26, 
+week9 = 17, week10 = 3, week11 = 18, week12 = null, week13 = 27, week14 = 9, week15 = 31, 
+week16 = 8, week17 = 10, week18 = 27
+Where teamId = 7;
+
+-- Adding in schedule information for the Cleveland Browns
+Update regSeasonSchedule Set
+week1 = 9, week2 = 15, week3 = 24, week4 = 17, week5 = 32, week6 = 26, week7 = 7, week8 = 3, 
+week9 = 18, week10 = null, week11 = 23, week12 = 27, week13 = 10, week14 = 27, week15 = 16, 
+week16 = 7, week17 = 20, week18 = 3
+Where teamId = 8;
+
+-- Adding in schedule information for the Dallas Cowboys
+Update regSeasonSchedule Set
+week1 = 8, week2 = 23, week3 = 3, week4 = 24, week5 = 27, week6 = 11, week7 = null, week8 = 28, 
+week9 = 2, week10 = 26, week11 = 13, week12 = 32, week13 = 24, week14 = 7, week15 = 5, 
+week16 = 30, week17 = 26, week18 = 32
+Where teamId = 9;
+
+-- Adding in schedule information for the Denver Broncos
+Update regSeasonSchedule Set
+week1 = 29, week2 = 27, week3 = 30, week4 = 25, week5 = 17, week6 = 18, week7 = 23, week8 = 5, 
+week9 = 3, week10 = 16, week11 = 2, week12 = 17, week13 = 8, week14 = null, week15 = 14, 
+week16 = 18, week17 = 7, week18 = 16
+Where teamId = 10;
+
 Select * from regSeasonSchedule;
 
