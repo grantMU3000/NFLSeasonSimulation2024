@@ -301,5 +301,41 @@ week9 = 12, week10 = 13, week11 = 15, week12 = 14, week13 = 6, week14 = 12, week
 week16 = 6, week17 = 28, week18 = 21
 Where teamId = 11;
 
+-- Adding in schedule information for the Green Bay Packers
+Update regSeasonSchedule Set 
+week1 = 26, week2 = 14, week3 = 31, week4 = 21, week5 = 19, week6 = 1, week7 = 13, week8 = 15, 
+week9 = 11, week10 = null, week11 = 6, week12 = 28, week13 = 20, week14 = 11, week15 = 29, 
+week16 = 23, week17 = 21, week18 = 6
+Where teamId = 12;
+
+-- Adding in schedule information for the Houston Texans
+Update regSeasonSchedule Set 
+week1 = 14, week2 = 6, week3 = 21, week4 = 15, week5 = 4, week6 = 22, week7 = 12, week8 = 14, 
+week9 = 25, week10 = 11, week11 = 9, week12 = 31, week13 = 15, week14 = null, week15 = 20, 
+week16 = 16, week17 = 3, week18 = 31
+Where teamId = 13;
+
+-- Adding in schedule information for the Indianapolis  Colts
+Update regSeasonSchedule Set 
+week1 = 13, week2 = 12, week3 = 6, week4 = 27, week5 = 15, week6 = 31, week7 = 20, week8 = 13, 
+week9 = 21, week10 = 4, week11 = 25, week12 = 11, week13 = 22, week14 = null, week15 = 10, 
+week16 = 31, week17 = 24, week18 = 15
+Where teamId = 14;
+
+-- Adding in schedule information for the Jacksonville Jaguars
+Update regSeasonSchedule Set 
+week1 = 20, week2 = 8, week3 = 4, week4 = 13, week5 = 14, week6 = 6, week7 = 22, week8 = 12, 
+week9 = 26, week10 = 21, week11 = 11, week12 = null, week13 = 13, week14 = 31, week15 = 25, 
+week16 = 17, week17 = 31, week18 = 14
+Where teamId = 15;
+
+-- Adding in schedule information for the Kansas City Chiefs
+Update regSeasonSchedule Set 
+week1 = 3, week2 = 7, week3 = 2, week4 = 18, week5 = 23, week6 = null, week7 = 28, week8 = 17, 
+week9 = 30, week10 = 10, week11 = 4, week12 = 5, week13 = 17, week14 = 18, week15 = 8, 
+week16 = 13, week17 = 27, week18 = 10
+Where teamId = 16;
+
+
 Select * from regSeasonSchedule;
 
