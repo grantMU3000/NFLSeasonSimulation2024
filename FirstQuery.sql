@@ -294,5 +294,12 @@ week9 = 3, week10 = 16, week11 = 2, week12 = 17, week13 = 8, week14 = null, week
 week16 = 18, week17 = 7, week18 = 16
 Where teamId = 10;
 
+-- Adding in schedule information for the Detroit  Lions
+Update regSeasonSchedule Set 
+week1 = 19, week2 = 30, week3 = 1, week4 = 29, week5 = null, week6 = 9, week7 = 21, week8 = 31, 
+week9 = 12, week10 = 13, week11 = 15, week12 = 14, week13 = 6, week14 = 12, week15 = 4, 
+week16 = 6, week17 = 28, week18 = 21
+Where teamId = 11;
+
 Select * from regSeasonSchedule;
 
