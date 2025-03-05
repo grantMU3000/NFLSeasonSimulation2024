@@ -378,5 +378,75 @@ week9 = 31, week10 = 6, week11 = 19, week12 = 20, week13 = 14, week14 = null, we
 week16 = 4, week17 = 18, week18 = 4
 Where teamId = 22;
 
+-- Adding in schedule information for the New Orleans Saints
+Update regSeasonSchedule Set 
+week1 = 5, week2 = 9, week3 = 26, week4 = 2, week5 = 16, week6 = 30, week7 = 10, week8 = 18, 
+week9 = 5, week10 = 2, week11 = 8, week12 = null, week13 = 19, week14 = 24, week15 = 32, 
+week16 = 12, week17 = 17, week18 = 30
+Where teamId = 23;
+
+-- Adding in schedule information for the New York Giants
+Update regSeasonSchedule Set 
+week1 = 21, week2 = 32, week3 = 8, week4 = 9, week5 = 29, week6 = 7, week7 = 26, week8 = 27, 
+week9 = 32, week10 = 5, week11 = null, week12 = 30, week13 = 9, week14 = 23, week15 = 3, 
+week16 = 2, week17 = 14, week18 = 26
+Where teamId = 24;
+
+-- Adding in schedule information for the New York Jets
+Update regSeasonSchedule Set 
+week1 = 28, week2 = 31, week3 = 22, week4 = 10, week5 = 21, week6 = 4, week7 = 27, week8 = 22, 
+week9 = 13, week10 = 1, week11 = 14, week12 = null, week13 = 29, week14 = 20, week15 = 15, 
+week16 = 19, week17 = 4, week18 = 20
+Where teamId = 25;
+
+-- Adding in schedule information for the Philadelphia Eagles
+Update regSeasonSchedule Set 
+week1 = 12, week2 = 2, week3 = 23, week4 = 30, week5 = null, week6 = 8, week7 = 24, week8 = 7, 
+week9 = 15, week10 = 9, week11 = 32, week12 = 19, week13 = 3, week14 = 5, week15 = 27, 
+week16 = 32, week17 = 9, week18 = 24
+Where teamId = 26;
+
+-- Adding in schedule information for the Pittsburgh Steelers
+Update regSeasonSchedule Set 
+week1 = 2, week2 = 10, week3 = 18, week4 = 14, week5 = 9, week6 = 17, week7 = 25, week8 = 24, 
+week9 = null, week10 = 32, week11 = 3, week12 = 8, week13 = 7, week14 = 8, week15 = 26, 
+week16 = 3, week17 = 16, week18 = 7
+Where teamId = 27;
+
+-- Adding in schedule information for the San Francisco 49ers
+Update regSeasonSchedule Set 
+week1 = 25, week2 = 21, week3 = 19, week4 = 22, week5 = 1, week6 = 29, week7 = 16, week8 = 9, 
+week9 = null, week10 = 30, week11 = 29, week12 = 12, week13 = 4, week14 = 6, week15 = 19, 
+week16 = 20, week17 = 11, week18 = 1
+Where teamId = 28;
+
+-- Adding in schedule information for the Seattle Seahawks
+Update regSeasonSchedule Set 
+week1 = 10, week2 = 22, week3 = 20, week4 = 11, week5 = 24, week6 = 28, week7 = 2, week8 = 4, 
+week9 = 19, week10 = null, week11 = 28, week12 = 1, week13 = 25, week14 = 1, week15 = 12, 
+week16 = 21, week17 = 6, week18 = 19
+Where teamId = 29;
+
+-- Adding in schedule information for the Tampa Bay Buccaneers
+Update regSeasonSchedule Set 
+week1 = 32, week2 = 11, week3 = 10, week4 = 26, week5 = 2, week6 = 23, week7 = 3, week8 = 2, 
+week9 = 16, week10 = 28, week11 = null, week12 = 24, week13 = 5, week14 = 17, week15 = 18, 
+week16 = 9, week17 = 5, week18 = 23
+Where teamId = 30;
+
+-- Adding in schedule information for the Tennessee Titans
+Update regSeasonSchedule Set 
+week1 = 6, week2 = 25, week3 = 12, week4 = 20, week5 = null, week6 = 14, week7 = 4, week8 = 11, 
+week9 = 22, week10 = 18, week11 = 21, week12 = 13, week13 = 32, week14 = 15, week15 = 7, 
+week16 = 14, week17 = 15, week18 = 13
+Where teamId = 31;
+
+-- Adding in schedule information for the Washington Commanders
+Update regSeasonSchedule Set 
+week1 = 30, week2 = 24, week3 = 7, week4 = 1, week5 = 8, week6 = 3, week7 = 5, week8 = 6, 
+week9 = 24, week10 = 27, week11 = 26, week12 = 9, week13 = 31, week14 = null, week15 = 23, 
+week16 = 26, week17 = 2, week18 = 9
+Where teamId = 32;
+
 Select * from regSeasonSchedule;
 
