@@ -16,16 +16,6 @@ Create Table Teams (
     Conference varchar(3)
 );
 
-Alter Table Teams Add Column DivisionDraws int DEFAULT 0 After DivisionLosses;
-Select * from Teams;
-
-Alter Table Teams
-Alter ConferenceDraws
-Set Default 0;
-Update Teams Set Draws = 0;
-
-
-
 -- Adding all of the teams to the table
 Insert Into Teams (City, Mascot, Division, Conference)
 Values(
@@ -39,15 +29,13 @@ Create Table NFC (
     Mascot varchar(50) Unique,
     Wins int,
     Losses int,
+    Draws int DEFAULT 0,
     ConferenceWins int,
     ConferenceLosses int,
-    Division varchar(25)
+    ConferenceDraws int DEFAULT 0,
+    Division varchar(25),
+    Foreign Key(teamID) References Teams(id)
 );
-
--- Adding a foreign key for the Team ID so Teams & NFC are linked
-Alter Table NFC
-Add constraint fk_NFCteam_id
-Foreign Key(teamID) References Teams(id);
 
 -- Adding The NFC teams into the NFC table from my Teams table
 Insert into NFC(teamId, City, Mascot, Division) Select id, City, Mascot, Division from Teams
@@ -68,19 +56,15 @@ Create Table AFC (
 	teamID int Primary Key,
     City varchar(50),
     Mascot varchar(50) Unique,
-    Wins int,
-    Losses int,
-    ConferenceWins int,
-    ConferenceLosses int,
+    Wins int DEFAULT 0,
+    Losses int DEFAULT 0,
+    Draws int DEFAULT 0,
+    ConferenceWins int DEFAULT 0,
+    ConferenceLosses int DEFAULT 0,
+    ConferenceDraws int DEFAULT 0,
     Division varchar(25),
     Foreign Key(TeamID) References Teams(id)
 );
-
--- Setting default values for the wins/losses to be 0
-Alter Table AFC Alter Wins Set Default 0;
-Alter Table AFC Alter Losses Set Default 0;
-Alter Table AFC Alter ConferenceWins Set Default 0;
-Alter Table AFC Alter ConferenceLosses Set Default 0;
 
 -- Adding The AFC teams into the AFC table from my Teams table
 Insert Into AFC(teamId, City, Mascot, Division) 
@@ -93,16 +77,15 @@ Where Conference = 'AFC';
 Create Table afcNorth (
 	teamId int Primary Key,
     City varchar(50),
-    Mascot varchar(50),
+    Mascot varchar(50) UNIQUE,
     Wins int DEFAULT 0,
     Losses int DEFAULT 0,
+    Draws int DEFAULT 0,
     DivisionWins int DEFAULT 0,
     DivisionLosses int DEFAULT 0,
+    DivisionDraws int DEFAULT 0,
     Foreign Key(teamID) References Teams(id)
 );
-
-Alter Table afcNorth
-Add Constraint Unique(Mascot);
 
 -- Adding AFC North Teams from the Teams table
 Insert into afcNorth(teamId, City, Mascot) Select id, City, Mascot from Teams 
@@ -112,11 +95,13 @@ Where Division = 'AFC North';
 Create Table afcSouth (
 	teamId int Primary Key,
     City varchar(50),
-    Mascot varchar(50) Unique,
+    Mascot varchar(50) UNIQUE,
     Wins int DEFAULT 0,
     Losses int DEFAULT 0,
+    Draws int DEFAULT 0,
     DivisionWins int DEFAULT 0,
     DivisionLosses int DEFAULT 0,
+    DivisionDraws int DEFAULT 0,
     Foreign Key(teamID) References Teams(id)
 );
 
@@ -128,11 +113,13 @@ Where Division = 'AFC South';
 Create Table afcEast (
 	teamId int Primary Key,
     City varchar(50),
-    Mascot varchar(50) Unique,
+    Mascot varchar(50) UNIQUE,
     Wins int DEFAULT 0,
     Losses int DEFAULT 0,
+    Draws int DEFAULT 0,
     DivisionWins int DEFAULT 0,
     DivisionLosses int DEFAULT 0,
+    DivisionDraws int DEFAULT 0,
     Foreign Key(teamID) References Teams(id)
 );
 
@@ -144,13 +131,20 @@ Where Division = 'AFC East';
 Create Table afcWest (
 	teamId int Primary Key,
     City varchar(50),
-    Mascot varchar(50) Unique,
+    Mascot varchar(50) UNIQUE,
     Wins int DEFAULT 0,
     Losses int DEFAULT 0,
+    Draws int DEFAULT 0,
     DivisionWins int DEFAULT 0,
     DivisionLosses int DEFAULT 0,
+    DivisionDraws int DEFAULT 0,
     Foreign Key(teamID) References Teams(id)
 );
+
+Alter Table afcWest
+Add column Draws int DEFAULT 0 After Losses,
+Add column DivisionDraws int DEFAULT 0 After DivisionLosses;
+
 
 -- Adding AFC West Teams from the Teams table
 Insert into afcWest(teamId, City, Mascot) Select id, City, Mascot from Teams 
@@ -160,13 +154,16 @@ Where Division = 'AFC West';
 Create Table nfcNorth (
 	teamId int Primary Key,
     City varchar(50),
-    Mascot varchar(50) Unique,
+    Mascot varchar(50) UNIQUE,
     Wins int DEFAULT 0,
     Losses int DEFAULT 0,
+    Draws int DEFAULT 0,
     DivisionWins int DEFAULT 0,
     DivisionLosses int DEFAULT 0,
+    DivisionDraws int DEFAULT 0,
     Foreign Key(teamID) References Teams(id)
 );
+
 
 -- Adding NFC North Teams from the Teams table
 Insert into nfcNorth(teamId, City, Mascot) Select id, City, Mascot from Teams 
@@ -176,11 +173,13 @@ Where Division = 'NFC North';
 Create Table nfcSouth (
 	teamId int Primary Key,
     City varchar(50),
-    Mascot varchar(50) Unique,
+    Mascot varchar(50) UNIQUE,
     Wins int DEFAULT 0,
     Losses int DEFAULT 0,
+    Draws int DEFAULT 0,
     DivisionWins int DEFAULT 0,
     DivisionLosses int DEFAULT 0,
+    DivisionDraws int DEFAULT 0,
     Foreign Key(teamID) References Teams(id)
 );
 
@@ -192,11 +191,13 @@ Where Division = 'NFC South';
 Create Table nfcEast (
 	teamId int Primary Key,
     City varchar(50),
-    Mascot varchar(50) Unique,
+    Mascot varchar(50) UNIQUE,
     Wins int DEFAULT 0,
     Losses int DEFAULT 0,
+    Draws int DEFAULT 0,
     DivisionWins int DEFAULT 0,
     DivisionLosses int DEFAULT 0,
+    DivisionDraws int DEFAULT 0,
     Foreign Key(teamID) References Teams(id)
 );
 
@@ -208,11 +209,13 @@ Where Division = 'NFC East';
 Create Table nfcWest (
 	teamId int Primary Key,
     City varchar(50),
-    Mascot varchar(50) Unique,
+    Mascot varchar(50) UNIQUE,
     Wins int DEFAULT 0,
     Losses int DEFAULT 0,
+    Draws int DEFAULT 0,
     DivisionWins int DEFAULT 0,
     DivisionLosses int DEFAULT 0,
+    DivisionDraws int DEFAULT 0,
     Foreign Key(teamID) References Teams(id)
 );
 
