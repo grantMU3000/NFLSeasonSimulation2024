@@ -448,5 +448,19 @@ week9 = 24, week10 = 27, week11 = 26, week12 = 9, week13 = 31, week14 = null, we
 week16 = 26, week17 = 2, week18 = 9
 Where teamId = 32;
 
-Select * from regSeasonSchedule;
+-- Adding in the regular season results table
+Create Table regSeasonResults (
+	teamId int Primary Key,
+    City varchar(25),
+    Mascot varchar(25) Unique,
+    week1 char, week2 char, week3 char, week4 char, week5 char, week6 char, week7 char,
+    week8 char, week9 char, week10 char, week11 char, week12 char, week13 char, week14 char,
+    week15 char, week16 char, week17 char, week18 char,
+    Foreign Key(teamId) references Teams(id)
+);
+
+-- Adding all of the teams into the results table
+Insert Into regSeasonResults(teamId, City, Mascot) Select id, City, Mascot from Teams;
+
+Select * from regSeasonResults;
 
