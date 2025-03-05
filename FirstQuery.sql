@@ -5,13 +5,26 @@ Create Table Teams (
     Mascot varchar(50) Unique,
     Wins int DEFAULT 0,
     Losses int DEFAULT 0,
+    Draws int DEFAULT 0,
     ConferenceWins int DEFAULT 0,
     ConferenceLosses int DEFAULT 0,
+    ConferenceDraws int DEFAULT 0,
     DivisionWins int DEFAULT 0,
     DivisionLosses int DEFAULT 0,
+    DivisionDraws int DEFAULT 0,
     Division varchar(25),
     Conference varchar(3)
 );
+
+Alter Table Teams Add Column DivisionDraws int DEFAULT 0 After DivisionLosses;
+Select * from Teams;
+
+Alter Table Teams
+Alter ConferenceDraws
+Set Default 0;
+Update Teams Set Draws = 0;
+
+
 
 -- Adding all of the teams to the table
 Insert Into Teams (City, Mascot, Division, Conference)
@@ -462,5 +475,5 @@ Create Table regSeasonResults (
 -- Adding all of the teams into the results table
 Insert Into regSeasonResults(teamId, City, Mascot) Select id, City, Mascot from Teams;
 
-Select * from regSeasonResults;
+Select * from Teams;
 
