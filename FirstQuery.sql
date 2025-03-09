@@ -558,8 +558,38 @@ Create Table teamRatings (
 -- Putting the teams into the team ratings table
 Insert into teamRatings(teamId, City, Mascot) Select id, City, Mascot from Teams;
 
-Update teamRatings Set Rating = 99 Where teamId = 28;
+-- Giving all the teams their proper ratings
+Update teamRatings Set Rating = 51 Where teamId = 1;
+Update teamRatings Set Rating = 71 Where teamId = 2;
+Update teamRatings Set Rating = 95 Where teamId = 3;
+Update teamRatings Set Rating = 87 Where teamId = 4;
+Update teamRatings Set Rating = 41 Where teamId = 5;
+Update teamRatings Set Rating = 55 Where teamId = 6;
+Update teamRatings Set Rating = 89 Where teamId = 7;
+Update teamRatings Set Rating = 81 Where teamId = 8;
+Update teamRatings Set Rating = 85 Where teamId = 9;
+Update teamRatings Set Rating = 45 Where teamId = 10;
+Update teamRatings Set Rating = 93 Where teamId = 11;
+Update teamRatings Set Rating = 79 Where teamId = 12;
+Update teamRatings Set Rating = 77 Where teamId = 13;
+Update teamRatings Set Rating = 61 Where teamId = 14;
+Update teamRatings Set Rating = 69 Where teamId = 15;
 Update teamRatings Set Rating = 98 Where teamId = 16;
+Update teamRatings Set Rating = 47 Where teamId = 17;
+Update teamRatings Set Rating = 75 Where teamId = 19;
+Update teamRatings Set Rating = 83 Where teamId = 20;
+Update teamRatings Set Rating = 57 Where teamId = 21;
+Update teamRatings Set Rating = 39 Where teamId = 22;
+Update teamRatings Set Rating = 53 Where teamId = 23;
+Update teamRatings Set Rating = 43 Where teamId = 24;
+Update teamRatings Set Rating = 73 Where teamId = 25;
+Update teamRatings Set Rating = 91 Where teamId = 26;
+Update teamRatings Set Rating = 67 Where teamId = 27;
+Update teamRatings Set Rating = 99 Where teamId = 28;
+Update teamRatings Set Rating = 63 Where teamId = 29;
+Update teamRatings Set Rating = 65 Where teamId = 30;
+Update teamRatings Set Rating = 49 Where teamId = 31;
+Update teamRatings Set Rating = 37 Where teamId = 32;
 
-Select * from teamRatings;
+Select * from teamRatings Order By Rating Desc;
 
