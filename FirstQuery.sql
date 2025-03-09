@@ -478,5 +478,73 @@ Create Table regSeasonResults (
 -- Adding all of the teams into the results table
 Insert Into regSeasonResults(teamId, City, Mascot) Select id, City, Mascot from Teams;
 
-Select * from Teams;
+-- Creating playoff tables for the league
+
+-- Creating the wild card rounds
+Create Table nfcWildCard (
+	teamId int Primary Key,
+    City varchar(25),
+    Mascot varchar(25) Unique,
+    conferenceSeed int Unique,
+    Result char,
+    Foreign Key(teamId) references Teams(id)
+);
+
+Create Table afcWildCard (
+	teamId int Primary Key,
+    City varchar(25),
+    Mascot varchar(25) Unique,
+    conferenceSeed int Unique,
+    Result char,
+    Foreign Key(teamId) references Teams(id)
+);
+
+-- Creating the divisional Round
+Create Table nfcDivisional (
+	teamId int Primary Key,
+    City varchar(25),
+    Mascot varchar(25) Unique,
+    conferenceSeed int Unique,
+    Result char,
+    Foreign Key(teamId) references Teams(id)
+);
+
+Create Table afcDivisional (
+	teamId int Primary Key,
+    City varchar(25),
+    Mascot varchar(25) Unique,
+    conferenceSeed int Unique,
+    Result char,
+    Foreign Key(teamId) references Teams(id)
+);
+
+-- Creating the Conference Championship rounds
+Create Table nfcConfChamp (
+	teamId int Primary Key,
+    City varchar(25),
+    Mascot varchar(25) Unique,
+    conferenceSeed int Unique,
+    Result char,
+    Foreign Key(teamId) references Teams(id)
+);
+
+Create Table afcConfChamp (
+	teamId int Primary Key,
+    City varchar(25),
+    Mascot varchar(25) Unique,
+    conferenceSeed int Unique,
+    Result char,
+    Foreign Key(teamId) references Teams(id)
+);
+
+-- Creating a Super Bowl
+Create Table superBowl (
+	teamId int Primary Key,
+    City varchar(25),
+    Mascot varchar(25) Unique,
+    Result char,
+    Foreign Key(teamId) references Teams(id)
+);
+
+Select * from afcDivisional;
 
