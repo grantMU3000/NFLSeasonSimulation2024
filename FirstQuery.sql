@@ -596,13 +596,22 @@ Create Table gameSite (
 	teamId int Primary Key,
     City varchar(25),
     Mascot varchar(25) Unique,
-    week1 int, week2 int, week3 int, week4 int, week5 int, week6 int,
-    week7 int, week8 int, week9 int, week10 int, week11 int, week12 int,
-    week13 int, week14 int, week15 int, week16 int, week17 int, week18 int,
+    week1 char, week2 char, week3 char, week4 char, week5 char, week6 char,
+    week7 char, week8 char, week9 char, week10 char, week11 char, week12 char,
+    week13 char, week14 char, week15 char, week16 char, week17 char, week18 char,
     Foreign Key(teamID) References Teams(id)
 );
 
+-- Put all the teams into the gameSite table
+Insert into gameSite(teamId, City, Mascot) Select id, City, Mascot from Teams;
 
+-- Adding in home/away for all of the teams
+
+-- Updating game sites for the Arizona Cardinals
+Update gameSite Set week1 = 'A', week2 = 'H', week3 = 'H', week4 = 'H', week5 = 'A', week6 = 'A',
+				week7 = 'H', week8 = 'A', week9 = 'H', week10 = 'H', week11 = null, week12 = 'A',
+                week13 = 'A', week14 = 'H', week15 = 'H', week16 = 'A', week17 = 'A', week18 = 'H'
+Where teamId = 1;
 
 Select * from gameSite;
 
