@@ -591,5 +591,18 @@ Update teamRatings Set Rating = 65 Where teamId = 30;
 Update teamRatings Set Rating = 49 Where teamId = 31;
 Update teamRatings Set Rating = 37 Where teamId = 32;
 
-Select * from teamRatings Order By Rating Desc;
+-- Making a table for tracking home & away games
+Create Table gameSite (
+	teamId int Primary Key,
+    City varchar(25),
+    Mascot varchar(25) Unique,
+    week1 int, week2 int, week3 int, week4 int, week5 int, week6 int,
+    week7 int, week8 int, week9 int, week10 int, week11 int, week12 int,
+    week13 int, week14 int, week15 int, week16 int, week17 int, week18 int,
+    Foreign Key(teamID) References Teams(id)
+);
+
+
+
+Select * from gameSite;
 
