@@ -546,5 +546,20 @@ Create Table superBowl (
     Foreign Key(teamId) references Teams(id)
 );
 
-Select * from afcDivisional;
+-- Creating a table to track team ratings
+Create Table teamRatings (
+	teamId int Primary Key,
+    City varchar(25),
+    Mascot varchar(25) Unique,
+    Rating int,
+    Foreign Key(teamId) references Teams(id)
+);
+
+-- Putting the teams into the team ratings table
+Insert into teamRatings(teamId, City, Mascot) Select id, City, Mascot from Teams;
+
+Update teamRatings Set Rating = 99 Where teamId = 28;
+Update teamRatings Set Rating = 98 Where teamId = 16;
+
+Select * from teamRatings;
 
