@@ -751,5 +751,53 @@ Update gameSite Set week1 = 'H', week2 = 'A', week3 = 'A', week4 = 'H', week5 = 
                 week13 = 'A', week14 = 'H', week15 = 'H', week16 = 'A', week17 = 'H', week18 = 'A'
 Where teamId = 24;
 
+-- Updating game sites for the New York Jets
+Update gameSite Set week1 = 'A', week2 = 'A', week3 = 'H', week4 = 'H', week5 = 'A', week6 = 'H',
+				week7 = 'A', week8 = 'A', week9 = 'H', week10 = 'A', week11 = 'H', week12 = null,
+                week13 = 'H', week14 = 'A', week15 = 'A', week16 = 'H', week17 = 'A', week18 = 'H'
+Where teamId = 25;
+
+-- Updating game sites for the Philadelphia Eagles
+Update gameSite Set week1 = 'H', week2 = 'H', week3 = 'A', week4 = 'A', week5 = null, week6 = 'H',
+				week7 = 'A', week8 = 'A', week9 = 'H', week10 = 'A', week11 = 'H', week12 = 'A',
+                week13 = 'A', week14 = 'H', week15 = 'H', week16 = 'A', week17 = 'H', week18 = 'H'
+Where teamId = 26;
+
+-- Updating game sites for the Pittsburgh Steelers
+Update gameSite Set week1 = 'A', week2 = 'A', week3 = 'H', week4 = 'A', week5 = 'H', week6 = 'A',
+				week7 = 'H', week8 = 'H', week9 = null, week10 = 'A', week11 = 'H', week12 = 'A',
+                week13 = 'A', week14 = 'H', week15 = 'A', week16 = 'A', week17 = 'H', week18 = 'H'
+Where teamId = 27;
+
+-- Updating game sites for the San Francisco 49ers
+Update gameSite Set week1 = 'H', week2 = 'A', week3 = 'A', week4 = 'H', week5 = 'H', week6 = 'A',
+				week7 = 'H', week8 = 'H', week9 = null, week10 = 'A', week11 = 'H', week12 = 'A',
+                week13 = 'A', week14 = 'H', week15 = 'H', week16 = 'A', week17 = 'H', week18 = 'A'
+Where teamId = 28;
+
+-- Updating game sites for the Seattle Seahawks
+Update gameSite Set week1 = 'H', week2 = 'A', week3 = 'H', week4 = 'A', week5 = 'H', week6 = 'H',
+				week7 = 'A', week8 = 'H', week9 = 'H', week10 = null, week11 = 'A', week12 = 'H',
+                week13 = 'A', week14 = 'A', week15 = 'H', week16 = 'H', week17 = 'A', week18 = 'A'
+Where teamId = 29;
+
+-- Updating game sites for the Tampa Bay Buccaneers
+Update gameSite Set week1 = 'H', week2 = 'A', week3 = 'H', week4 = 'H', week5 = 'A', week6 = 'A',
+				week7 = 'H', week8 = 'H', week9 = 'A', week10 = 'H', week11 = null, week12 = 'A',
+                week13 = 'A', week14 = 'H', week15 = 'A', week16 = 'A', week17 = 'H', week18 = 'H'
+Where teamId = 30;
+
+-- Updating game sites for the Tennessee Titans
+Update gameSite Set week1 = 'A', week2 = 'H', week3 = 'H', week4 = 'A', week5 = null, week6 = 'H',
+				week7 = 'A', week8 = 'A', week9 = 'H', week10 = 'A', week11 = 'H', week12 = 'A',
+                week13 = 'A', week14 = 'H', week15 = 'H', week16 = 'A', week17 = 'A', week18 = 'H'
+Where teamId = 31;
+
+-- Updating game sites for the Washington Commanders
+Update gameSite Set week1 = 'A', week2 = 'H', week3 = 'A', week4 = 'A', week5 = 'H', week6 = 'A',
+				week7 = 'H', week8 = 'H', week9 = 'A', week10 = 'H', week11 = 'A', week12 = 'H',
+                week13 = 'H', week14 = null, week15 = 'A', week16 = 'H', week17 = 'H', week18 = 'A'
+Where teamId = 32;
+
 Select * from gameSite;
 
