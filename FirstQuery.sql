@@ -703,5 +703,53 @@ Update gameSite Set week1 = 'H', week2 = 'H', week3 = 'A', week4 = 'A', week5 = 
                 week13 = 'H', week14 = 'H', week15 = 'A', week16 = 'H', week17 = 'A', week18 = 'A'
 Where teamId = 16;
 
+-- Updating game sites for the Las Vegas Raiders
+Update gameSite Set week1 = 'A', week2 = 'A', week3 = 'H', week4 = 'H', week5 = 'A', week6 = 'H',
+				week7 = 'A', week8 = 'H', week9 = 'A', week10 = null, week11 = 'A', week12 = 'H',
+                week13 = 'A', week14 = 'A', week15 = 'H', week16 = 'H', week17 = 'A', week18 = 'H'
+Where teamId = 17;
+
+-- Updating game sites for the Los Angeles Chargers 
+Update gameSite Set week1 = 'H', week2 = 'A', week3 = 'A', week4 = 'H', week5 = null, week6 = 'A',
+				week7 = 'A', week8 = 'H', week9 = 'A', week10 = 'H', week11 = 'H', week12 = 'H',
+                week13 = 'A', week14 = 'A', week15 = 'H', week16 = 'H', week17 = 'A', week18 = 'A'
+Where teamId = 18;
+
+-- Updating game sites for the Los Angeles Rams 
+Update gameSite Set week1 = 'A', week2 = 'A', week3 = 'H', week4 = 'A', week5 = 'H', week6 = null,
+				week7 = 'H', week8 = 'H', week9 = 'A', week10 = 'H', week11 = 'A', week12 = 'H',
+                week13 = 'A', week14 = 'H', week15 = 'A', week16 = 'A', week17 = 'H', week18 = 'H'
+Where teamId = 19;
+
+-- Updating game sites for the Miami Dolphins
+Update gameSite Set week1 = 'H', week2 = 'H', week3 = 'A', week4 = 'H', week5 = 'A', week6 = null,
+				week7 = 'A', week8 = 'H', week9 = 'A', week10 = 'A', week11 = 'H', week12 = 'H',
+                week13 = 'A', week14 = 'H', week15 = 'A', week16 = 'H', week17 = 'A', week18 = 'A'
+Where teamId = 20;
+
+-- Updating game sites for the Minnesota Vikings
+Update gameSite Set week1 = 'A', week2 = 'H', week3 = 'H', week4 = 'A', week5 = 'H', week6 = null,
+				week7 = 'H', week8 = 'A', week9 = 'H', week10 = 'A', week11 = 'A', week12 = 'A',
+                week13 = 'H', week14 = 'H', week15 = 'H', week16 = 'A', week17 = 'H', week18 = 'A'
+Where teamId = 21;
+
+-- Updating game sites for the New England Patriots
+Update gameSite Set week1 = 'A', week2 = 'H', week3 = 'A', week4 = 'A', week5 = 'H', week6 = 'H',
+				week7 = 'A', week8 = 'H', week9 = 'A', week10 = 'A', week11 = 'H', week12 = 'A',
+                week13 = 'H', week14 = null, week15 = 'A', week16 = 'A', week17 = 'H', week18 = 'H'
+Where teamId = 22;
+
+-- Updating game sites for the New Orleans Saints
+Update gameSite Set week1 = 'H', week2 = 'A', week3 = 'H', week4 = 'A', week5 = 'A', week6 = 'H',
+				week7 = 'H', week8 = 'A', week9 = 'A', week10 = 'H', week11 = 'H', week12 = null,
+                week13 = 'H', week14 = 'A', week15 = 'H', week16 = 'A', week17 = 'H', week18 = 'A'
+Where teamId = 23;
+
+-- Updating game sites for the New York Giants
+Update gameSite Set week1 = 'H', week2 = 'A', week3 = 'A', week4 = 'H', week5 = 'A', week6 = 'H',
+				week7 = 'H', week8 = 'A', week9 = 'H', week10 = 'A', week11 = null, week12 = 'H',
+                week13 = 'A', week14 = 'H', week15 = 'H', week16 = 'A', week17 = 'H', week18 = 'A'
+Where teamId = 24;
+
 Select * from gameSite;
 
