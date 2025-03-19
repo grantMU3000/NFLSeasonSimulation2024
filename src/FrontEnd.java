@@ -2,6 +2,7 @@
  * This class is used to handle the front end information that will be displayed
  * to the user.
  */
+import java.util.Scanner;
 
 public class FrontEnd {
     // This integer will be used to keep track of what week it is during the season
@@ -33,8 +34,14 @@ public class FrontEnd {
      * This ranges from displaying team schedules, standings, or advancing a week.
      */
     private static void chooseOption() {
-        System.out.println("Type a number that aligns with what you want to do" +
-            " and click enter");
+        System.out.println("1. Display division standings");
+        System.out.println("2. Display conference standings");
+        System.out.println("3. Display a team's schedule");
+        System.out.println("4. Display the league's schedule");
+        System.out.println("5. Advance a week");
+
+        System.out.print("\n Select a number between 1 & 5 based on the options" +
+            " above, and click enter: ");
     }
 
     /**
