@@ -32,6 +32,8 @@ public class FrontEnd {
     /**
      * This method will show the user their options on what they can do within the app. 
      * This ranges from displaying team schedules, standings, or advancing a week.
+     * The method gets the user's input, and uses it to call a method that will process
+     * said input.
      */
     private static void chooseOption() {
         System.out.println("1. Display division standings");
@@ -40,8 +42,13 @@ public class FrontEnd {
         System.out.println("4. Display the league's schedule");
         System.out.println("5. Advance a week");
 
-        System.out.print("\n Select a number between 1 & 5 based on the options" +
+        System.out.println("\n Select a number between 1 & 5 based on the options" +
             " above, and click enter: ");
+
+        Scanner sc = new Scanner(System.in); // Scanner for reading the user input
+        int num = sc.nextInt();
+
+        System.out.println(num);
     }
 
     /**
@@ -50,6 +57,5 @@ public class FrontEnd {
      * @param pick integer variable that represents the option the user selected.
      */
     private static void optionToggle(int pick) {
-
     }
 }
