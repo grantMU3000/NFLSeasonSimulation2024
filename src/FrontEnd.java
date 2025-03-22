@@ -36,7 +36,7 @@ public class FrontEnd {
      * The method gets the user's input, and uses it to call a method that will process
      * said input.
      */
-    private static void chooseOption() {
+    private static void chooseOption() throws InputMismatchException {
         System.out.println("1. Display division standings");
         System.out.println("2. Display conference standings");
         System.out.println("3. Display a team's schedule");
@@ -48,18 +48,31 @@ public class FrontEnd {
         Scanner sc = new Scanner(System.in); // Scanner for reading the user input
         boolean valid = false;
 
+        /*
+        * Loop that will elicit a selected option from the user. This runs until 
+        * the user enters a valid input.
+        */ 
         do {
+
             try {
+
                 System.out.print("\n Select a number between 1 & 5 based on the options" +
             " above, and click enter: ");
-                int num = sc.nextInt();
-                System.out.println(num);
-                valid = true;
+                int num = sc.nextInt();  // Get the user's selection
+
+                if ((num >= 1) && (num <= 5)) {
+                    System.out.println(num);
+                    valid = true;  // Valid since the selection was gotten
+                } else {
+                    throw new InputMismatchException();
+                }
+
             } catch (InputMismatchException s) {
+                // Exception thrown if the user doesn't enter a valid number
                 System.out.println("You can only enter a number between 1 & 5!");
             }
-            sc.nextLine();
-        } while (!valid);
+            sc.nextLine();  // Prevents an infinite loop
+        } while (!valid); 
     }
 
     /**
