@@ -2,6 +2,7 @@
  * This class is used to handle the front end information that will be displayed
  * to the user.
  */
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FrontEnd {
@@ -42,13 +43,23 @@ public class FrontEnd {
         System.out.println("4. Display the league's schedule");
         System.out.println("5. Advance a week");
 
-        System.out.println("\n Select a number between 1 & 5 based on the options" +
-            " above, and click enter: ");
+        
 
         Scanner sc = new Scanner(System.in); // Scanner for reading the user input
-        int num = sc.nextInt();
+        boolean valid = false;
 
-        System.out.println(num);
+        do {
+            try {
+                System.out.print("\n Select a number between 1 & 5 based on the options" +
+            " above, and click enter: ");
+                int num = sc.nextInt();
+                System.out.println(num);
+                valid = true;
+            } catch (InputMismatchException s) {
+                System.out.println("You can only enter a number between 1 & 5!");
+            }
+            sc.nextLine();
+        } while (!valid);
     }
 
     /**
@@ -57,5 +68,6 @@ public class FrontEnd {
      * @param pick integer variable that represents the option the user selected.
      */
     private static void optionToggle(int pick) {
+
     }
 }
