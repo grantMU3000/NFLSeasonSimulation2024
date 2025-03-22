@@ -61,7 +61,7 @@ public class FrontEnd {
                 int num = sc.nextInt();  // Get the user's selection
 
                 if ((num >= 1) && (num <= 5)) {
-                    System.out.println(num);
+                    optionToggle(num);
                     valid = true;  // Valid since the selection was gotten
                 } else {
                     throw new InputMismatchException();
@@ -81,6 +81,14 @@ public class FrontEnd {
      * @param pick integer variable that represents the option the user selected.
      */
     private static void optionToggle(int pick) {
-
+        // This switch case will check which option the user selected and run 
+        // appropriate functions
+        switch (pick) {
+            case 1:
+                System.out.println("Displaying league standings...");
+                break;
+            default:
+                System.out.println("Error!");
+        }
     }
 }
