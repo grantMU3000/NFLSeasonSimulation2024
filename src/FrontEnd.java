@@ -2,6 +2,10 @@
  * This class is used to handle the front end information that will be displayed
  * to the user.
  */
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -13,6 +17,30 @@ public class FrontEnd {
         
         welcomeMessage();
         chooseOption();
+
+        // Connecting to the database
+        String url="jdbc:mysql://localhost:3306/NFLSim2024";
+        String username="root";
+        String password="Saaheem2024__";
+
+        try {
+
+            Connection connection = DriverManager.getConnection(url, username, password);
+
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("select * from AFC");
+
+            System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2) +
+            resultSet.getString(3) + " " + resultSet.getInt(4) + resultSet.getInt(5) +
+            resultSet.getInt(6) + " " + resultSet.getInt(7) + resultSet.getInt(8) +
+            resultSet.getInt(9) + " " + resultSet.getString(10));
+            
+
+            connection.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     /**
@@ -55,7 +83,6 @@ public class FrontEnd {
         do {
 
             try {
-
                 System.out.print("\n Select a number between 1 & 5 based on the options" +
             " above, and click enter: ");
                 int num = sc.nextInt();  // Get the user's selection
