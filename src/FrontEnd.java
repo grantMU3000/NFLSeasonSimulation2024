@@ -2,10 +2,7 @@
  * This class is used to handle the front end information that will be displayed
  * to the user.
  */
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -17,30 +14,44 @@ public class FrontEnd {
         
         welcomeMessage();
         chooseOption();
-
         // Connecting to the database
         String url="jdbc:mysql://localhost:3306/NFLSim2024";
         String username="root";
         String password="Saaheem2024__";
 
+        // Trying to connect to the MySQL Driver. Catching any errors in this process
         try {
+
+            /* Class.forName("com.mysql.cj.jdbc.Driver");
 
             Connection connection = DriverManager.getConnection(url, username, password);
 
-            Statement statement = connection.createStatement();
+             Statement statement = connection.createStatement();
 
             ResultSet resultSet = statement.executeQuery("select * from AFC");
 
             System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2) +
             resultSet.getString(3) + " " + resultSet.getInt(4) + resultSet.getInt(5) +
             resultSet.getInt(6) + " " + resultSet.getInt(7) + resultSet.getInt(8) +
-            resultSet.getInt(9) + " " + resultSet.getString(10));
+            resultSet.getInt(9) + " " + resultSet.getString(10)); 
             
+            if (connection != null) {
+                System.err.println("Successful connection");
+                connection.close();
+            } */
 
-            connection.close();
+            Class.forName("com.mysql.cj.jdbc.Driver"); // Loads the MySQL Driver
+            Connection connection = DriverManager.getConnection(url, username, password);  // Creates an actual connection
+            // Tests to see if the connection works
+            if (connection != null) {
+                System.err.println("Successful connection");
+                connection.close();
+            }
+            
         } catch (Exception e) {
-            System.out.println(e);
-        }
+            System.err.println(e);
+            e.printStackTrace();
+        } 
     }
 
     /**
