@@ -22,31 +22,27 @@ public class FrontEnd {
         // Trying to connect to the MySQL Driver. Catching any errors in this process
         try {
 
-            /* Class.forName("com.mysql.cj.jdbc.Driver");
-
-            Connection connection = DriverManager.getConnection(url, username, password);
-
-             Statement statement = connection.createStatement();
-
-            ResultSet resultSet = statement.executeQuery("select * from AFC");
-
-            System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2) +
-            resultSet.getString(3) + " " + resultSet.getInt(4) + resultSet.getInt(5) +
-            resultSet.getInt(6) + " " + resultSet.getInt(7) + resultSet.getInt(8) +
-            resultSet.getInt(9) + " " + resultSet.getString(10)); 
-            
-            if (connection != null) {
-                System.err.println("Successful connection");
-                connection.close();
-            } */
-
             Class.forName("com.mysql.cj.jdbc.Driver"); // Loads the MySQL Driver
             Connection connection = DriverManager.getConnection(url, username, password);  // Creates an actual connection
-            // Tests to see if the connection works
-            if (connection != null) {
-                System.err.println("Successful connection");
-                connection.close();
-            }
+
+            PreparedStatement statement = connection.prepareStatement("select * from Teams");  // Used to do an SQL query
+
+            // This will actually query the database & store the result
+            // Acts as an iterator in the database
+            ResultSet resultSet = statement.executeQuery();
+
+            // This will go through each row of the Teams table and display column information
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString(1) + " " + resultSet.getString(2) + " "
+                + resultSet.getString(3) + " " + resultSet.getString(4) + " "
+                + resultSet.getString(5) + " " + resultSet.getString(6) + " "
+                + resultSet.getString(7) + " " + resultSet.getString(8) + " "
+                + resultSet.getString(9) + " " + resultSet.getString(10) + " "
+                + resultSet.getString(11) + " " + resultSet.getString(12) + " "
+                + resultSet.getString(13) + " " + resultSet.getString(14) + " ");
+            } 
+            
+            connection.close();
             
         } catch (Exception e) {
             System.err.println(e);
