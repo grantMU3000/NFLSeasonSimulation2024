@@ -150,6 +150,7 @@ public class FrontEnd {
             System.out.println("8. AFC West");
             System.out.println("9. AFC North");
             System.out.println("10. AFC South\n");
+            System.out.println("11. All Divisions\n");
 
             userDivSelect();  // Calling a helper method to get the user's selection
         }  // End of divSelection
@@ -169,11 +170,11 @@ public class FrontEnd {
             do {
 
                 try {
-                    System.out.print("\n Select a number between 1 & 10 based on the options" +
+                    System.out.print("\n Select a number between 1 & 11 based on the options" +
                 " above, and click enter: ");
                     int num = sc.nextInt();  // Get the user's selection
 
-                    if ((num >= 1) && (num <= 10)) {
+                    if ((num >= 1) && (num <= 11)) {
                         divToggle(num);
                         valid = true;  // Valid since the selection was gotten
                     } else {
@@ -228,9 +229,22 @@ public class FrontEnd {
                 case 10:
                     System.out.println("Displaying AFC South standings...");
                     break;
+                case 11:
+                    System.out.println("Displaying All division standings...");
+                    break;
                 default:
                     System.out.println("Error!");
             }  // End of switch case
         } // End of divToggle method
+
+        /**
+         * This method will run an SQL statement that gets the division standings 
+         * of a division.
+         * @param division A String variable that represents the division being
+         * selected.
+         */
+        private static void divStatement(String division) {
+
+        }
     }  // End of RegSeason class
 }  // End of FrontEnd class
