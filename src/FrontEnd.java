@@ -137,8 +137,7 @@ public class FrontEnd {
     private class RegSeason {
 
         /**
-         * This method will ask the user what divisions they would like displayed, 
-         * and saves the user's decision.
+         * This method will display divisions for the user to select.
          */
         private static void divSelection() {
             System.out.println("\n1. All NFC Divisions");
@@ -150,7 +149,43 @@ public class FrontEnd {
             System.out.println("7. AFC East");
             System.out.println("8. AFC West");
             System.out.println("9. AFC North");
-            System.out.println("10. AFC South");
+            System.out.println("10. AFC South\n");
+
+            userDivSelect();  // Calling a helper method to get the user's selection
+        }
+
+        /**
+         * This method will prompt the user to pick which division they would
+         * like to display
+         */
+        private static void userDivSelect() {
+            Scanner sc = new Scanner(System.in); // Scanner for reading the user input
+            boolean valid = false;
+
+            /*
+            * Loop that will elicit a selected option from the user. This runs until 
+            * the user enters a valid input.
+            */ 
+            do {
+
+                try {
+                    System.out.print("\n Select a number between 1 & 10 based on the options" +
+                " above, and click enter: ");
+                    int num = sc.nextInt();  // Get the user's selection
+
+                    if ((num >= 1) && (num <= 10)) {
+                        System.out.println("Valid");;
+                        valid = true;  // Valid since the selection was gotten
+                    } else {
+                        throw new InputMismatchException();
+                    }
+
+                } catch (InputMismatchException s) {
+                    // Exception thrown if the user doesn't enter a valid number
+                    System.out.println("You can only enter a number between 1 & 10!");
+                }
+                sc.nextLine();  // Prevents an infinite loop
+            } while (!valid); 
         }
     }
 }
