@@ -152,11 +152,11 @@ public class FrontEnd {
             System.out.println("10. AFC South\n");
 
             userDivSelect();  // Calling a helper method to get the user's selection
-        }
+        }  // End of divSelection
 
         /**
          * This method will prompt the user to pick which division they would
-         * like to display
+         * like to display.
          */
         private static void userDivSelect() {
             Scanner sc = new Scanner(System.in); // Scanner for reading the user input
@@ -174,7 +174,7 @@ public class FrontEnd {
                     int num = sc.nextInt();  // Get the user's selection
 
                     if ((num >= 1) && (num <= 10)) {
-                        System.out.println("Valid");;
+                        divToggle(num);
                         valid = true;  // Valid since the selection was gotten
                     } else {
                         throw new InputMismatchException();
@@ -186,6 +186,51 @@ public class FrontEnd {
                 }
                 sc.nextLine();  // Prevents an infinite loop
             } while (!valid); 
-        }
-    }
-}
+        } // End of userDivSelection
+
+        /**
+         * This method will use the user's selection to display specific standings
+         * to the user.
+         * 
+         * @param option An Integer that represents the user's selection.
+         */
+        private static void divToggle(int option) {
+            // This switch case will check which option the user selected and run 
+            // appropriate functions for displaying divisions
+            switch (option) {
+                case 1:
+                    System.out.println("Displaying NFC division standings...");
+                    break;
+                case 2:
+                    System.out.println("Displaying NFC East standings...");
+                    break;
+                case 3:
+                    System.out.println("Displaying NFC West standings...");
+                    break;
+                case 4:
+                    System.out.println("Displaying NFC North standings...");
+                    break;
+                case 5:
+                    System.out.println("Displaying NFC South standings...");
+                    break;
+                case 6:
+                    System.out.println("Displaying AFC division standings...");
+                    break;
+                case 7:
+                    System.out.println("Displaying AFC East standings...");
+                    break;
+                case 8:
+                    System.out.println("Displaying AFC West standings...");
+                    break;
+                case 9:
+                    System.out.println("Displaying AFC North standings...");
+                    break;
+                case 10:
+                    System.out.println("Displaying AFC South standings...");
+                    break;
+                default:
+                    System.out.println("Error!");
+            }  // End of switch case
+        } // End of divToggle method
+    }  // End of RegSeason class
+}  // End of FrontEnd class
