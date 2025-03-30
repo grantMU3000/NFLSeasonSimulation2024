@@ -255,8 +255,6 @@ public class FrontEnd {
              try {
                 Class.forName("com.mysql.cj.jdbc.Driver"); // Loads the MySQL Driver
                 Connection connection = DriverManager.getConnection(url, username, password);  // Creates an actual connection
-
-                System.out.println("Doing query...");
                 /*
                  * This statement will get information from the given division table.
                  */
@@ -267,6 +265,11 @@ public class FrontEnd {
                 // Acts as an iterator in the database
                 ResultSet resultSet = statement.executeQuery();
 
+                // This will go through each row of the division's table and display column information
+                while (resultSet.next()) {
+                    System.out.println(resultSet.getString(1) + " " + resultSet.getString(2)
+                        + " (" + resultSet.getInt(3) + "-" + resultSet.getInt(4) + ")");
+                }
                 
              } catch (Exception e) {
                 System.out.println(e.getMessage());
