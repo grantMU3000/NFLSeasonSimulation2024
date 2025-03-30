@@ -271,14 +271,21 @@ public class FrontEnd {
 
                 // This will go through each row of the division's table and display column information
                 while (resultSet.next()) {
-                    System.out.printf("%-15s %-15s (%d-%d)\n", resultSet.getString(1), resultSet.getString(2),
+                    result +=  String.format("%-15s %-15s %d-%d\n", resultSet.getString(1), resultSet.getString(2),
                         resultSet.getInt(3), resultSet.getInt(4));
-                }
+
+                    // If the team has a draw in their record, then this is added to the results so it
+                    // can be displayed
+                    if (resultSet.getInt(5) > 0) {
+                        result += "-" + resultSet.getInt(5);
+                    }
+                }  // End of query loop
                 
              } catch (Exception e) {
                 System.out.println(e.getMessage());
              }  // End of try-catch
 
+             System.out.println(result);
              return result;
 
         }  // End of divStatement
