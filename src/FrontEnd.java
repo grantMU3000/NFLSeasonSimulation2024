@@ -2,7 +2,6 @@
  * This class is used to handle the front end information that will be displayed
  * to the user.
  */
-import java.sql.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -14,12 +13,14 @@ public class FrontEnd {
         
         welcomeMessage();
         chooseOption();
+        /*
         // Connecting to the database
         String url="jdbc:mysql://localhost:3306/NFLSim2024";
         String username="root";
         String password="Saaheem2024__";
 
         // Trying to connect to the MySQL Driver. Catching any errors in this process
+         
         try {
 
             Class.forName("com.mysql.cj.jdbc.Driver"); // Loads the MySQL Driver
@@ -48,6 +49,7 @@ public class FrontEnd {
             System.err.println(e);
             e.printStackTrace();
         } 
+        */
     }
 
     /**
@@ -76,7 +78,8 @@ public class FrontEnd {
         System.out.println("2. Display conference standings");
         System.out.println("3. Display a team's schedule");
         System.out.println("4. Display the league's schedule");
-        System.out.println("5. Advance a week");
+        System.out.println("5. Display team records");
+        System.out.println("6. Advance a week");
 
         
 
@@ -119,10 +122,35 @@ public class FrontEnd {
         // appropriate functions
         switch (pick) {
             case 1:
-                System.out.println("Displaying league standings...");
+                RegSeason.divSelection();
                 break;
             default:
                 System.out.println("Error!");
+        }
+    }
+
+
+    /**
+     * This class will be used to handle the regular season aspects of this simulation.
+     * (E.g. displaying standings, seeding, etc.).
+     */
+    private class RegSeason {
+
+        /**
+         * This method will ask the user what divisions they would like displayed, 
+         * and saves the user's decision.
+         */
+        private static void divSelection() {
+            System.out.println("\n1. All NFC Divisions");
+            System.out.println("2. NFC East");
+            System.out.println("3. NFC West");
+            System.out.println("4. NFC North");
+            System.out.println("5. NFC South");
+            System.out.println("\n6. All AFC Divisions");
+            System.out.println("7. AFC East");
+            System.out.println("8. AFC West");
+            System.out.println("9. AFC North");
+            System.out.println("10. AFC South");
         }
     }
 }
