@@ -2,6 +2,7 @@
  * This class is used to handle the front end information that will be displayed
  * to the user.
  */
+import java.sql.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -204,6 +205,7 @@ public class FrontEnd {
                     break;
                 case 2:
                     System.out.println("Displaying NFC East standings...");
+                    divStatement("nfcEast");
                     break;
                 case 3:
                     System.out.println("Displaying NFC West standings...");
@@ -244,7 +246,32 @@ public class FrontEnd {
          * selected.
          */
         private static void divStatement(String division) {
+            // Variables used for connecting to the database
+            String url="jdbc:mysql://localhost:3306/NFLSim2024";
+            String username="root";
+            String password="Saaheem2024__";
 
-        }
+             // Trying to connect to the MySQL Driver. Catching any errors in this process
+             try {
+                Class.forName("com.mysql.cj.jdbc.Driver"); // Loads the MySQL Driver
+                Connection connection = DriverManager.getConnection(url, username, password);  // Creates an actual connection
+
+                System.out.println("Doing query...");
+                /*
+                 * This statement will get information from the given division table.
+                 */
+                PreparedStatement statement = connection.prepareStatement("Select City, Mascot, Wins, Losses, " + 
+                    "Draws from " + division + " Order By Wins");  
+                
+                // This will actually query the database & store the result
+                // Acts as an iterator in the database
+                ResultSet resultSet = statement.executeQuery();
+
+                
+             } catch (Exception e) {
+                System.out.println(e.getMessage());
+             }  // End of try-catch
+
+        }  // End of divStatement
     }  // End of RegSeason class
 }  // End of FrontEnd class
