@@ -244,8 +244,12 @@ public class FrontEnd {
          * of a division.
          * @param division A String variable that represents the division being
          * selected.
+         * 
+         * @return A String that represents the division standings
          */
-        private static void divStatement(String division) {
+        private static String divStatement(String division) {
+            String result = "";
+
             // Variables used for connecting to the database
             String url="jdbc:mysql://localhost:3306/NFLSim2024";
             String username="root";
@@ -267,13 +271,15 @@ public class FrontEnd {
 
                 // This will go through each row of the division's table and display column information
                 while (resultSet.next()) {
-                    System.out.println(resultSet.getString(1) + " " + resultSet.getString(2)
-                        + " (" + resultSet.getInt(3) + "-" + resultSet.getInt(4) + ")");
+                    System.out.printf("%-15s %-15s (%d-%d)\n", resultSet.getString(1), resultSet.getString(2),
+                        resultSet.getInt(3), resultSet.getInt(4));
                 }
                 
              } catch (Exception e) {
                 System.out.println(e.getMessage());
              }  // End of try-catch
+
+             return result;
 
         }  // End of divStatement
     }  // End of RegSeason class
