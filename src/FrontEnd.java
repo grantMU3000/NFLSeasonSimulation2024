@@ -8,13 +8,16 @@ import java.util.Scanner;
 
 public class FrontEnd {
     // This integer will be used to keep track of what week it is during the season
-    public int week = 1;
+    public static int week = 1;
+    public static boolean quit = false;
     public static void main(String[] args) {
         // Welcome message for the user
         
         welcomeMessage();
-        
-        chooseOption();
+
+        do {
+            chooseOption();
+        } while (week <= 18 && !quit);
         /*
         // Connecting to the database
         String url="jdbc:mysql://localhost:3306/NFLSim2024";
@@ -129,7 +132,7 @@ public class FrontEnd {
                 RegSeason.divSelection();
                 break;
             case 7: 
-                quitConfirm();
+                quit = quitConfirm();
                 break;
             default:
                 System.out.println("Error!");
@@ -144,16 +147,23 @@ public class FrontEnd {
      */
     private static boolean quitConfirm() {
         boolean valid = true;
+        // This loop will get a response from the user. It runs until the user 
+        // enters a valid number (1 or 2)
         do {
             valid = true;
             System.out.println("Are you sure you want to quit the simulation?");
-            System.out.println("Type 1 for yes or 2 for no: ");
+            System.out.print("Type 1 for yes or 2 for no: ");
 
             Scanner sc = new Scanner(System.in); // Scanner for reading the user input
             
+            // If an invalid input is entered, the catch block will tell the 
+            // user to enter a valid number
             try {
                 int num = sc.nextInt();
+                // If user selects 1, then the simulation stops. If it's 2, 
+                // then the app will keep running
                 if (num == 1) {
+                    System.out.println("I hope you return soon!");
                     return true;
                 } else if (num == 2) {
                     return false;
