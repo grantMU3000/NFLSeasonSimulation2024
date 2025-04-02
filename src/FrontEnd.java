@@ -334,11 +334,8 @@ public class FrontEnd {
          * of a division.
          * @param division A String variable that represents the division being
          *                  selected.
-         * 
-         * @return A String that represents the division standings
          */
-        private static String divStatement(String division) {
-            String result = "";
+        private static void divStatement(String division) {
 
             // Variables used for connecting to the database
             String url="jdbc:mysql://localhost:3306/NFLSim2024";
@@ -361,14 +358,16 @@ public class FrontEnd {
 
                 // This will go through each row of the division's table and display column information
                 while (resultSet.next()) {
-                    result +=  String.format("%-15s %-15s %d-%d\n", resultSet.getString(1), resultSet.getString(2),
+                    System.out.printf("%-15s %-15s %d-%d", resultSet.getString(1), resultSet.getString(2),
                         resultSet.getInt(3), resultSet.getInt(4));
 
                     // If the team has a draw in their record, then this is added to the results so it
                     // can be displayed
                     if (resultSet.getInt(5) > 0) {
-                        result += "-" + resultSet.getInt(5);
+                        System.out.print("-" + resultSet.getInt(5));
                     }
+                    // Since we're at the end of the row, this goes to the next line
+                    System.out.println(""); 
                 }  // End of query loop
 
                 connection.close();
@@ -376,9 +375,8 @@ public class FrontEnd {
              } catch (Exception e) {
                 System.out.println(e.getMessage());
              }  // End of try-catch
-
-             System.out.println(result);
-             return result;
+             // Goes to the next line to create more space for the next output
+             System.out.println(""); 
 
         }  // End of divStatement
     }  // End of RegSeason class
