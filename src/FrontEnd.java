@@ -202,6 +202,7 @@ public class FrontEnd {
             switch (option) {
                 case 1:
                     System.out.println("Displaying NFC division standings...");
+                    
                     break;
                 case 2:
                     System.out.println("Displaying NFC East standings...");
@@ -209,27 +210,35 @@ public class FrontEnd {
                     break;
                 case 3:
                     System.out.println("Displaying NFC West standings...");
+                    divStatement("nfcWest");
                     break;
                 case 4:
                     System.out.println("Displaying NFC North standings...");
+                    divStatement("nfcNorth");
                     break;
                 case 5:
                     System.out.println("Displaying NFC South standings...");
+                    divStatement("nfcSouth");
                     break;
                 case 6:
                     System.out.println("Displaying AFC division standings...");
+                    
                     break;
                 case 7:
                     System.out.println("Displaying AFC East standings...");
+                    divStatement("afcEast");
                     break;
                 case 8:
                     System.out.println("Displaying AFC West standings...");
+                    divStatement("afcWest");
                     break;
                 case 9:
                     System.out.println("Displaying AFC North standings...");
+                    divStatement("afcNorth");
                     break;
                 case 10:
                     System.out.println("Displaying AFC South standings...");
+                    divStatement("afcSouth");
                     break;
                 case 11:
                     System.out.println("Displaying All division standings...");
@@ -240,10 +249,22 @@ public class FrontEnd {
         } // End of divToggle method
 
         /**
+         * This method is a helper to the divToggle method. It will be used to
+         * loop through all of the divisions for a conference or league and get
+         * them displayed.
+         * 
+         * @param userConf A String variable that represents the conference or 
+         *                  league divisions that the user wants displayed.
+         */
+        private static void allDivs(String userConf) {
+
+        }
+
+        /**
          * This method will run an SQL statement that gets the division standings 
          * of a division.
          * @param division A String variable that represents the division being
-         * selected.
+         *                  selected.
          * 
          * @return A String that represents the division standings
          */
@@ -280,6 +301,8 @@ public class FrontEnd {
                         result += "-" + resultSet.getInt(5);
                     }
                 }  // End of query loop
+
+                connection.close();
                 
              } catch (Exception e) {
                 System.out.println(e.getMessage());
