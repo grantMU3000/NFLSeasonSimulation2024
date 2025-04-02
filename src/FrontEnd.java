@@ -131,6 +131,9 @@ public class FrontEnd {
             case 1:
                 RegSeason.divSelection();
                 break;
+            case 2:
+                RegSeason.confSelect();
+                break;
             case 7: 
                 quit = quitConfirm();
                 break;
@@ -379,5 +382,31 @@ public class FrontEnd {
              System.out.println(""); 
 
         }  // End of divStatement
+
+        /**
+         * This method will display the user's options for which
+         * conference/league standings they can see.
+         * 
+         * @return a boolean value that represents whether or not the user 
+         *          input was valid.
+         */
+        private static boolean confSelect() {
+            System.out.println("\n1. NFL");
+            System.out.println("2. NFC");
+            System.out.println("3. AFC");
+            System.out.println("4. NFC & AFC");
+        }  // End of confSelect
+
+        /**
+         * This method will give the user a chance to choose which conference's
+         * standings they want to see
+         * 
+         * @return a boolean value that represents whether or not the user 
+         *          input was valid.
+         */
+        private static boolean userConfSelection() {
+            
+        }
+
     }  // End of RegSeason class
 }  // End of FrontEnd class
