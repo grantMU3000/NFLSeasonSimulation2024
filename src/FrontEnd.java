@@ -13,6 +13,7 @@ public class FrontEnd {
         // Welcome message for the user
         
         welcomeMessage();
+        
         chooseOption();
         /*
         // Connecting to the database
@@ -75,12 +76,14 @@ public class FrontEnd {
      * said input.
      */
     private static void chooseOption() throws InputMismatchException {
+        
         System.out.println("1. Display division standings");
         System.out.println("2. Display conference standings");
         System.out.println("3. Display a team's schedule");
         System.out.println("4. Display the league's schedule");
         System.out.println("5. Display team records");
         System.out.println("6. Advance a week");
+        System.out.println("7. Quit");
 
         
 
@@ -94,11 +97,11 @@ public class FrontEnd {
         do {
 
             try {
-                System.out.print("\n Select a number between 1 & 5 based on the options" +
+                System.out.print("\n Select a number between 1 & 7 based on the options" +
             " above, and click enter: ");
                 int num = sc.nextInt();  // Get the user's selection
 
-                if ((num >= 1) && (num <= 5)) {
+                if ((num >= 1) && (num <= 7)) {
                     optionToggle(num);
                     valid = true;  // Valid since the selection was gotten
                 } else {
@@ -107,7 +110,7 @@ public class FrontEnd {
 
             } catch (InputMismatchException s) {
                 // Exception thrown if the user doesn't enter a valid number
-                System.out.println("You can only enter a number between 1 & 5!");
+                System.out.println("You can only enter a number between 1 & 7!");
             }
             sc.nextLine();  // Prevents an infinite loop
         } while (!valid); 
@@ -125,11 +128,47 @@ public class FrontEnd {
             case 1:
                 RegSeason.divSelection();
                 break;
+            case 7: 
+                quitConfirm();
+                break;
             default:
                 System.out.println("Error!");
         }
     }
 
+    /**
+     * This method will confirm whether or not the user wants to stop the app
+     * 
+     * @return a boolean value that's true if the user wants to quit, or false
+     *          if they don't.
+     */
+    private static boolean quitConfirm() {
+        boolean valid = true;
+        do {
+            valid = true;
+            System.out.println("Are you sure you want to quit the simulation?");
+            System.out.println("Type 1 for yes or 2 for no: ");
+
+            Scanner sc = new Scanner(System.in); // Scanner for reading the user input
+            
+            try {
+                int num = sc.nextInt();
+                if (num == 1) {
+                    return true;
+                } else if (num == 2) {
+                    return false;
+                } else {
+                    valid = false;
+                    throw new InputMismatchException();
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("You only enter the numbers 1 & 2!");
+            }  // End of try/catch
+
+        } while (!valid);
+        
+        return false;
+    }  // End of quitConfirm
 
     /**
      * This class will be used to handle the regular season aspects of this simulation.
