@@ -201,8 +201,8 @@ public class FrontEnd {
             // appropriate functions for displaying divisions
             switch (option) {
                 case 1:
-                    System.out.println("Displaying NFC division standings...");
-                    
+                    System.out.println("Displaying NFC division standings...\n");
+                    allDivs("NFC");
                     break;
                 case 2:
                     System.out.println("Displaying NFC East standings...");
@@ -221,8 +221,8 @@ public class FrontEnd {
                     divStatement("nfcSouth");
                     break;
                 case 6:
-                    System.out.println("Displaying AFC division standings...");
-                    
+                    System.out.println("Displaying AFC division standings...\n");
+                    allDivs("AFC");
                     break;
                 case 7:
                     System.out.println("Displaying AFC East standings...");
@@ -241,7 +241,8 @@ public class FrontEnd {
                     divStatement("afcSouth");
                     break;
                 case 11:
-                    System.out.println("Displaying All division standings...");
+                    System.out.println("Displaying All division standings...\n");
+                    allDivs("NFL");
                     break;
                 default:
                     System.out.println("Error!");
@@ -257,8 +258,27 @@ public class FrontEnd {
          *                  league divisions that the user wants displayed.
          */
         private static void allDivs(String userConf) {
+            // Checking what conference the user chose, and looping through 
+            // divToggle to display those divisions.
+            if (userConf.equals("NFC")) {
+                // Displays NFC's Division standings
+                for (int i = 2; i < 6; i++) {
+                    divToggle(i);
+                }
+            } else if (userConf.equals("AFC")) {
+                // Displays AFC's Division standings
+                for (int i = 7; i < 11; i++) {
+                    divToggle(i);
+                }
+            } else {
+                // If this is run, that means the user chose for all the 
+                // division standings to display, so the NFC's will display
+                // first. Then, the AFC's will display.
+                divToggle(1);
+                divToggle(6);
+            }
 
-        }
+        }  // End of allDivs
 
         /**
          * This method will run an SQL statement that gets the division standings 
