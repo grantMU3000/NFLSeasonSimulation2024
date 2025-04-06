@@ -98,7 +98,8 @@ public class FrontEnd {
                 RegSeason.confSelect();
                 break;
             case 3:
-                RegSeason.teamSchedule("D");
+                RegSeason.teamSchedule(1);
+                break;
             case 7: 
                 quit = quitConfirm();
                 break;
@@ -444,15 +445,38 @@ public class FrontEnd {
         /**
          * This method will display a team's regular season schedule.
          *  
-         * @param team A String variable that represents which NFL team's
-         *      schedule we will display.
+         * @param team An Integer variable that represents the NFL team's
+         *      ID whose schedule will display.
          */
-        private static void teamSchedule(String team) {
-            System.out.println("Displaying " + team + "'s schedule...\n");
+        private static void teamSchedule(int team) {
+            // Variables used for connecting to the database
+            String url="jdbc:mysql://localhost:3306/NFLSim2024";
+            String username="root";
+            String password="Saaheem2024__";
 
-            for (int i = 1; i < 19; i++) {
-                System.out.println("Week " + i + ". ");
-            }
-        }  // End of teamSchedule
+            // Trying to connect to the MySQL Driver. Catching any errors in this process
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver"); // Loads the MySQL Driver
+                Connection connection = DriverManager.getConnection(url, username, password);  // Creates an actual connection
+
+                // This will select the desired team's schedule
+                PreparedStatement teamStatement = connection.prepareStatement(
+                    "Select * from regSeasonSchedule where teamID = " + team + ";");
+                ResultSet result = teamStatement.executeQuery();
+
+                // This will go through the team's schedule and display them
+                while (result.next()) {
+                    System.out.println("Displaying " + result.getString(2) + 
+                        " " + result.getString(3) + "'s schedule...\n");
+                    for (int i = 1; i < 19; i++) {
+                        System.out.println("Week " + i + ". ");
+                    }  // End of for loop
+                }  // End of scheduling loop
+
+                connection.close();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }  // End of try-catch
+        }  // End of teamSchedule method
     }  // End of RegSeason class
 }  // End of FrontEnd class
