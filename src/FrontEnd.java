@@ -470,6 +470,7 @@ public class FrontEnd {
                         " " + result.getString(3) + "'s schedule...\n");
                     for (int i = 1; i < 19; i++) {
                         System.out.println("Week " + i + ". ");
+                        int opponent = result.getInt(i + 3);
                     }  // End of for loop
                 }  // End of scheduling loop
 
