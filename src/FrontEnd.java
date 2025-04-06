@@ -18,43 +18,6 @@ public class FrontEnd {
         do {
             chooseOption();
         } while (week <= 18 && !quit);
-        /*
-        // Connecting to the database
-        String url="jdbc:mysql://localhost:3306/NFLSim2024";
-        String username="root";
-        String password="Saaheem2024__";
-
-        // Trying to connect to the MySQL Driver. Catching any errors in this process
-         
-        try {
-
-            Class.forName("com.mysql.cj.jdbc.Driver"); // Loads the MySQL Driver
-            Connection connection = DriverManager.getConnection(url, username, password);  // Creates an actual connection
-
-            PreparedStatement statement = connection.prepareStatement("select * from Teams");  // Used to do an SQL query
-
-            // This will actually query the database & store the result
-            // Acts as an iterator in the database
-            ResultSet resultSet = statement.executeQuery();
-
-            // This will go through each row of the Teams table and display column information
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString(1) + " " + resultSet.getString(2) + " "
-                + resultSet.getString(3) + " " + resultSet.getString(4) + " "
-                + resultSet.getString(5) + " " + resultSet.getString(6) + " "
-                + resultSet.getString(7) + " " + resultSet.getString(8) + " "
-                + resultSet.getString(9) + " " + resultSet.getString(10) + " "
-                + resultSet.getString(11) + " " + resultSet.getString(12) + " "
-                + resultSet.getString(13) + " " + resultSet.getString(14) + " ");
-            } 
-            
-            connection.close();
-            
-        } catch (Exception e) {
-            System.err.println(e);
-            e.printStackTrace();
-        } 
-        */
     }
 
     /**
@@ -134,6 +97,8 @@ public class FrontEnd {
             case 2:
                 RegSeason.confSelect();
                 break;
+            case 3:
+                RegSeason.teamSchedule("D");
             case 7: 
                 quit = quitConfirm();
                 break;
@@ -476,5 +441,18 @@ public class FrontEnd {
 
         }  // End of confToggle method
 
+        /**
+         * This method will display a team's regular season schedule.
+         *  
+         * @param team A String variable that represents which NFL team's
+         *      schedule we will display.
+         */
+        private static void teamSchedule(String team) {
+            System.out.println("Displaying " + team + "'s schedule...\n");
+
+            for (int i = 1; i < 19; i++) {
+                System.out.println("Week " + i + ". ");
+            }
+        }  // End of teamSchedule
     }  // End of RegSeason class
 }  // End of FrontEnd class
