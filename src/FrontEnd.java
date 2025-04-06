@@ -414,9 +414,24 @@ public class FrontEnd {
          */
         private static boolean userConfSelection() {
             boolean valid = false;
+            Scanner sc = new Scanner(System.in);
 
-            return false;
-        } 
+            try {
+                int num = sc.nextInt();  // User's input is stored here
+
+                // Checking if the user's input is valid
+                if (num >= 1 && num <= 4) {
+                    valid = true;
+                } else {
+                    throw new InputMismatchException();
+                }
+                
+            } catch (InputMismatchException e) {
+                System.out.println("You can only enter numbers between 1 & 4!");
+            }  // End of try/catch
+
+            return valid;
+        } // End of userConfSelection
 
     }  // End of RegSeason class
 }  // End of FrontEnd class
