@@ -258,19 +258,19 @@ public class FrontEnd {
                     break;
                 case 2:
                     System.out.println("Displaying NFC East standings...");
-                    divStatement("nfcEast");
+                    standingStatement("nfcEast");
                     break;
                 case 3:
                     System.out.println("Displaying NFC West standings...");
-                    divStatement("nfcWest");
+                    standingStatement("nfcWest");
                     break;
                 case 4:
                     System.out.println("Displaying NFC North standings...");
-                    divStatement("nfcNorth");
+                    standingStatement("nfcNorth");
                     break;
                 case 5:
                     System.out.println("Displaying NFC South standings...");
-                    divStatement("nfcSouth");
+                    standingStatement("nfcSouth");
                     break;
                 case 6:
                     System.out.println("Displaying AFC division standings...\n");
@@ -278,19 +278,19 @@ public class FrontEnd {
                     break;
                 case 7:
                     System.out.println("Displaying AFC East standings...");
-                    divStatement("afcEast");
+                    standingStatement("afcEast");
                     break;
                 case 8:
                     System.out.println("Displaying AFC West standings...");
-                    divStatement("afcWest");
+                    standingStatement("afcWest");
                     break;
                 case 9:
                     System.out.println("Displaying AFC North standings...");
-                    divStatement("afcNorth");
+                    standingStatement("afcNorth");
                     break;
                 case 10:
                     System.out.println("Displaying AFC South standings...");
-                    divStatement("afcSouth");
+                    standingStatement("afcSouth");
                     break;
                 case 11:
                     System.out.println("Displaying All division standings...\n");
@@ -338,7 +338,7 @@ public class FrontEnd {
          * @param division A String variable that represents the division being
          *                  selected.
          */
-        private static void divStatement(String division) {
+        private static void standingStatement(String division) {
 
             // Variables used for connecting to the database
             String url="jdbc:mysql://localhost:3306/NFLSim2024";
@@ -449,16 +449,17 @@ public class FrontEnd {
             // appropriate functions for displaying divisions
             switch (option) {
                 case 1:
-                    System.out.println("Displaying League standings...\n");
+                    System.out.println("Displaying League standings...");
+                    standingStatement("Teams");
                     break;
                 case 2:
-                    System.out.println("Displaying NFC standings...\n");
+                    System.out.println("Displaying NFC standings...");
                     break;
                 case 3: 
-                    System.out.println("Displaying AFC standings...\n");
+                    System.out.println("Displaying AFC standings...");
                     break;
                 case 4:
-                    System.out.println("Displaying NFC & AFC standings...\n");
+                    System.out.println("Displaying NFC & AFC standings...");
                     break;
                 default:
                     System.out.println("Error!");
