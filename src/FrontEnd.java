@@ -416,11 +416,15 @@ public class FrontEnd {
             boolean valid = false;
             Scanner sc = new Scanner(System.in);
 
+            /*  Trying to get the user input. If it's invalid (e.g. not between
+                1 & 4, or it's not an integer, the catch block is ran.
+            */
             try {
                 int num = sc.nextInt();  // User's input is stored here
 
                 // Checking if the user's input is valid
                 if (num >= 1 && num <= 4) {
+                    confToggle(num);
                     valid = true;
                 } else {
                     throw new InputMismatchException();
@@ -431,7 +435,36 @@ public class FrontEnd {
             }  // End of try/catch
 
             return valid;
-        } // End of userConfSelection
+        } // End of userConfSelection method
 
+        /**
+         * Simple method that will help to display the right standings based
+         * on the user's selection.
+         * 
+         * @param option An Integer that represents the option that the user 
+         *      selects, which aligns with the standings they want displayed.
+         */
+        private static void confToggle(int option) {
+            // This switch case will check which option the user selected and run 
+            // appropriate functions for displaying divisions
+            switch (option) {
+                case 1:
+                    System.out.println("Displaying League standings...\n");
+                    break;
+                case 2:
+                    System.out.println("Displaying NFC standings...\n");
+                    break;
+                case 3: 
+                    System.out.println("Displaying AFC standings...\n");
+                    break;
+                case 4:
+                    System.out.println("Displaying NFC & AFC standings...\n");
+                    break;
+                default:
+                    System.out.println("Error!");
+            }  // End of switch case
+
+
+        }  // End of confToggle method
     }  // End of RegSeason class
 }  // End of FrontEnd class
