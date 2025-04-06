@@ -193,53 +193,56 @@ public class FrontEnd {
          * This method will display divisions for the user to select.
          */
         private static void divSelection() {
-            System.out.println("\n1. All NFC Divisions");
-            System.out.println("2. NFC East");
-            System.out.println("3. NFC West");
-            System.out.println("4. NFC North");
-            System.out.println("5. NFC South");
-            System.out.println("\n6. All AFC Divisions");
-            System.out.println("7. AFC East");
-            System.out.println("8. AFC West");
-            System.out.println("9. AFC North");
-            System.out.println("10. AFC South\n");
-            System.out.println("11. All Divisions\n");
-
-            userDivSelect();  // Calling a helper method to get the user's selection
+            // Loop that will prompt the user to select an appropriate option
+            // This will run until the user enters a valid input
+            do {
+                System.out.println("\n1. All NFC Divisions");
+                System.out.println("2. NFC East");
+                System.out.println("3. NFC West");
+                System.out.println("4. NFC North");
+                System.out.println("5. NFC South");
+                System.out.println("\n6. All AFC Divisions");
+                System.out.println("7. AFC East");
+                System.out.println("8. AFC West");
+                System.out.println("9. AFC North");
+                System.out.println("10. AFC South\n");
+                System.out.println("11. All Divisions\n");
+                System.out.print("\n Select a number between 1 & 11 based on the options" +
+                    " above, and click enter: ");
+            } while (!userDivSelect());  // Calling a helper method to get the user's selection
         }  // End of divSelection
 
         /**
          * This method will prompt the user to pick which division they would
          * like to display.
+         * 
+         * @return A boolean value that represents whether or not the user's
+         *      input was valid.
          */
-        private static void userDivSelect() {
+        private static boolean userDivSelect() {
             Scanner sc = new Scanner(System.in); // Scanner for reading the user input
             boolean valid = false;
 
-            /*
-            * Loop that will elicit a selected option from the user. This runs until 
-            * the user enters a valid input.
-            */ 
-            do {
+            /*  Trying to get the user input. If it's invalid (e.g. not between
+                1 & 11, or it's not an integer, the catch block is ran.
+            */
+            try {
+                    
+                int num = sc.nextInt();  // Get the user's selection
 
-                try {
-                    System.out.print("\n Select a number between 1 & 11 based on the options" +
-                " above, and click enter: ");
-                    int num = sc.nextInt();  // Get the user's selection
-
-                    if ((num >= 1) && (num <= 11)) {
-                        divToggle(num);
-                        valid = true;  // Valid since the selection was gotten
-                    } else {
-                        throw new InputMismatchException();
-                    }
-
-                } catch (InputMismatchException s) {
-                    // Exception thrown if the user doesn't enter a valid number
-                    System.out.println("You can only enter a number between 1 & 10!");
+                if ((num >= 1) && (num <= 11)) {
+                    divToggle(num);
+                    valid = true;  // Valid since the selection was gotten
+                } else {
+                    throw new InputMismatchException();
                 }
-                sc.nextLine();  // Prevents an infinite loop
-            } while (!valid); 
+
+            } catch (InputMismatchException s) {
+                // Exception thrown if the user doesn't enter a valid number
+                System.out.println("You can only enter a number between 1 & 11!");
+            }
+            return valid;
+
         } // End of userDivSelection
 
         /**
@@ -335,8 +338,8 @@ public class FrontEnd {
         /**
          * This method will run an SQL statement that gets the division standings 
          * of a division.
-         * @param division A String variable that represents the division being
-         *                  selected.
+         * @param division A String variable that represents the division (or
+         *                  conference) being selected.
          */
         private static void standingStatement(String division) {
 
@@ -471,7 +474,7 @@ public class FrontEnd {
                     System.out.println("Error!");
             }  // End of switch case
 
-
         }  // End of confToggle method
+
     }  // End of RegSeason class
 }  // End of FrontEnd class
