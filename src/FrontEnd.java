@@ -449,17 +449,23 @@ public class FrontEnd {
             // appropriate functions for displaying divisions
             switch (option) {
                 case 1:
-                    System.out.println("Displaying League standings...");
+                    System.out.println("Displaying League standings...\n");
                     standingStatement("Teams");
                     break;
                 case 2:
-                    System.out.println("Displaying NFC standings...");
+                    System.out.println("Displaying NFC standings...\n");
+                    standingStatement("NFC");
                     break;
                 case 3: 
-                    System.out.println("Displaying AFC standings...");
+                    System.out.println("Displaying AFC standings...\n");
+                    standingStatement("AFC");
                     break;
                 case 4:
                     System.out.println("Displaying NFC & AFC standings...");
+                    // Recursive calls since NFC & AFC are already done by 
+                    // themselves
+                    confToggle(2);
+                    confToggle(3);
                     break;
                 default:
                     System.out.println("Error!");
