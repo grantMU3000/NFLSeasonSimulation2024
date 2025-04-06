@@ -387,14 +387,22 @@ public class FrontEnd {
          * This method will display the user's options for which
          * conference/league standings they can see.
          * 
-         * @return a boolean value that represents whether or not the user 
-         *          input was valid.
          */
-        private static boolean confSelect() {
-            System.out.println("\n1. NFL");
-            System.out.println("2. NFC");
-            System.out.println("3. AFC");
-            System.out.println("4. NFC & AFC");
+        private static void confSelect() {
+            // Loop that will prompt the user to select an appropriate option
+            // This will run until the user enters a valid input
+            do {
+                System.out.println("\n1. NFL");
+                System.out.println("2. NFC");
+                System.out.println("3. AFC");
+                System.out.println("4. NFC & AFC\n");
+
+                System.out.print("Pick a number between 1 & 4 that represents the"
+                    + " standings that you would like to see: ");
+                    // Calling a method that gets user selection
+            } while (!userConfSelection());  
+
+
         }  // End of confSelect
 
         /**
@@ -405,8 +413,10 @@ public class FrontEnd {
          *          input was valid.
          */
         private static boolean userConfSelection() {
-            
-        }
+            boolean valid = false;
+
+            return false;
+        } 
 
     }  // End of RegSeason class
 }  // End of FrontEnd class
