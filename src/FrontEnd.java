@@ -98,7 +98,7 @@ public class FrontEnd {
                 RegSeason.confSelect();
                 break;
             case 3:
-                RegSeason.teamSchedule(1);
+                RegSeason.teamSchedSelect();
                 break;
             case 7: 
                 quit = quitConfirm();
@@ -441,7 +441,7 @@ public class FrontEnd {
          * decide which team's schedule they would like to see.
          */
         private static void teamSchedSelect() {
-
+            teamDisplay();
         }  // End of teamSchedSelect method
 
         /**
@@ -452,9 +452,23 @@ public class FrontEnd {
             // Trying to connect to the MySQL Driver. Catching any errors in this process
             try {
                 Connection connection = jdbcConnection.getConnection();
+
+                // This will pull all of the team names from the database
+                // alphabetically
+                PreparedStatement statement = connection.prepareStatement(
+                    "Select City, Mascot from Teams;");
+                ResultSet result = statement.executeQuery();
+
+                int num = 1;  // Used for indexing the teams
+                // This will display each team
+                while (result.next()) {
+                    System.out.printf("%d. %s %s\n", num, result.getString(1),
+                        result.getString(2));
+                    num++;
+                }
             } catch (Exception e) {
                 e.getMessage();
-            }
+            }  // End of try/catch
 
 
         }  // End of teamDisplay
