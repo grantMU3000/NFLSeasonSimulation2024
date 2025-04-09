@@ -610,9 +610,19 @@ public class FrontEnd {
                 System.out.printf("%d.\t Week %d\n", i, i);
             }  // End of for loop
             System.out.println();
-        
-        }  // End of leagueSchedule
+            
+        }  // End of leagueSchedule method
 
+        /**
+         * This method will get the week that the user wants to see the 
+         * schedule of.
+         * 
+         * @return A boolean value that represents whether or not the user 
+         *      entered a valid number.
+         */
+        private static boolean weekInput() {
+
+        }  // End of weekInput method
     }  // End of RegSeason class
 
     /**
