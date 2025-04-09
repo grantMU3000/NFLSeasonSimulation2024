@@ -488,8 +488,8 @@ public class FrontEnd {
          * ID.
          * @param id An integer that represents the ID of the team that will
          *      be returned.
-         * @return A String that represents a team name (
-         *      e.g. "Dallas Cowboys")
+         * @return A String that represents a team name 
+         *      (e.g. "Dallas Cowboys")
          */
         private static String getTeam(int id) {
             // Base case to make sure there's no errors
@@ -529,4 +529,31 @@ public class FrontEnd {
         }  // End of getOpponent
 
     }  // End of RegSeason class
+
+    /**
+     * This class is simply used to establish a JDBC to my database.
+     */
+    private class jdbcConnection {
+
+        private static Connection getConnection() {
+            // Variables used for connecting to the database
+            String url="jdbc:mysql://localhost:3306/NFLSim2024";
+            String username="root";
+            String password="Saaheem2024__";
+
+            Connection con = null;
+            // Trying to connect to the MySQL Driver. Catching any errors in this process
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver"); // Loads the MySQL Driver
+                con = DriverManager.getConnection(url, username, password);  // Creates an actual connection
+
+                
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }  // End of try-catch
+
+
+            return con;
+        }  // End of getConnection
+    }  // End of jdbcConnection class
 }  // End of FrontEnd class
