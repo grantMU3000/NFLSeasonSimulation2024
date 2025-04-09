@@ -468,10 +468,11 @@ public class FrontEnd {
                 while (result.next()) {
                     System.out.println("Displaying " + result.getString(2) + 
                         " " + result.getString(3) + "'s schedule...\n");
+                    
                     for (int i = 1; i < 19; i++) {
                         int opponent = result.getInt(i + 3);
-                        
-                        System.out.println("Week " + i + ". " + opponent);
+                        String oppName = getTeam(opponent);
+                        System.out.println("Week " + i + ". " + oppName);
                         
                     }  // End of for loop
                 }  // End of scheduling loop
@@ -491,7 +492,10 @@ public class FrontEnd {
          *      e.g. "Dallas Cowboys")
          */
         private static String getTeam(int id) {
-             
+            // Base case to make sure there's no errors
+            if (id == 0) {
+                return "Bye Week";
+            }
             // Variables used for connecting to the database
             String url="jdbc:mysql://localhost:3306/NFLSim2024";
             String username="root";
