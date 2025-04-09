@@ -469,8 +469,10 @@ public class FrontEnd {
                     System.out.println("Displaying " + result.getString(2) + 
                         " " + result.getString(3) + "'s schedule...\n");
                     for (int i = 1; i < 19; i++) {
-                        System.out.println("Week " + i + ". ");
                         int opponent = result.getInt(i + 3);
+                        
+                        System.out.println("Week " + i + ". " + opponent);
+                        
                     }  // End of for loop
                 }  // End of scheduling loop
 
@@ -479,5 +481,48 @@ public class FrontEnd {
                 System.out.println(e.getMessage());
             }  // End of try-catch
         }  // End of teamSchedule method
+
+        /**
+         * This is a helper method that will get a team's name based on their
+         * ID.
+         * @param id An integer that represents the ID of the team that will
+         *      be returned.
+         * @return A String that represents a team name (
+         *      e.g. "Dallas Cowboys")
+         */
+        private static String getTeam(int id) {
+             
+            // Variables used for connecting to the database
+            String url="jdbc:mysql://localhost:3306/NFLSim2024";
+            String username="root";
+            String password="Saaheem2024__";
+
+            String team = "";
+
+            // Trying to connect to the MySQL Driver. Catching any errors in this process
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver"); // Loads the MySQL Driver
+                Connection connection = DriverManager.getConnection(url, username, password);  // Creates an actual connection
+
+                // Actual SQL statement that will get the team name
+                PreparedStatement teamGetter = connection.prepareStatement(
+                    "Select City, Mascot from Teams where id = " + id + ";");
+                ResultSet res = teamGetter.executeQuery();
+
+                // Saving the team name into variables
+                while (res.next()) {
+                    String city = res.getString(1);
+                    String mascot = res.getString(2);
+
+                    team += city + " " + mascot;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }  // End of try-catch
+            
+            return team;
+           
+        }  // End of getOpponent
+
     }  // End of RegSeason class
 }  // End of FrontEnd class
