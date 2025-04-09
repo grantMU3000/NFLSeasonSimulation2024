@@ -322,9 +322,11 @@ public class FrontEnd {
                 // Acts as an iterator in the database
                 ResultSet resultSet = statement.executeQuery();
 
+                int num = 1;  // This will be used to display the rank of each team
                 // This will go through each row of the division's table and display column information
                 while (resultSet.next()) {
-                    System.out.printf("%-15s %-15s %d-%d", resultSet.getString(1), resultSet.getString(2),
+                    System.out.printf("%d. %-15s %-15s %d-%d", num, 
+                        resultSet.getString(1), resultSet.getString(2), 
                         resultSet.getInt(3), resultSet.getInt(4));
 
                     // If the team has a draw in their record, then this is added to the results so it
@@ -334,6 +336,8 @@ public class FrontEnd {
                     }
                     // Since we're at the end of the row, this goes to the next line
                     System.out.println(""); 
+
+                    num++;
                 }  // End of query loop
 
                 connection.close();
@@ -441,8 +445,46 @@ public class FrontEnd {
          * decide which team's schedule they would like to see.
          */
         private static void teamSchedSelect() {
-            teamDisplay();
+            // Loop will run until the user selects a valid option/team
+            do {
+                // Displaying the teams so the user can see their options
+                System.out.println();
+                teamDisplay();
+                System.out.println();
+
+                System.out.print("Pick a number between 1 & 32 that represents " + 
+                    "the team schedule that you would like to see: ");
+            } while (!teamInput());
+            
         }  // End of teamSchedSelect method
+
+        /**
+         * This method will get the user's selection and get the apporpriate
+         * team's schedule displayed.
+         * 
+         * @return A boolean value that represents whether or not the user
+         *      entered a valid input.
+         */
+        private static boolean teamInput() {
+            Scanner sc = new Scanner(System.in);
+
+            // Getting the user input, checking if it's valid, and catching
+            // invalid inputs. Displaying schedule if it's valid
+            try {
+                int num = sc.nextInt();  // Storing the user's input
+
+                if (num >= 1 && num <= 32) {
+                    teamSchedule(num);
+                    return true;
+                }
+                // Thrown b/c the user enters a number that's not between 1 & 32
+                throw new InputMismatchException(); 
+            } catch (InputMismatchException e) {
+                System.out.println("You can only choose numbers between 1 & 32!\n");
+            }  // End of try/catch
+
+            return false;
+        }  // End of teamInput
 
         /**
          * This method is a helper method to teamSchedSelect and it will 
@@ -466,6 +508,8 @@ public class FrontEnd {
                         result.getString(2));
                     num++;
                 }
+
+                connection.close();
             } catch (Exception e) {
                 e.getMessage();
             }  // End of try/catch
@@ -492,8 +536,8 @@ public class FrontEnd {
 
                 // This will go through the team's schedule and display them
                 while (result.next()) {
-                    System.out.println("Displaying " + result.getString(2) + 
-                        " " + result.getString(3) + "'s schedule...\n");
+                    System.out.println("Displaying the " + result.getString(2) 
+                        + " " + result.getString(3) + "'s schedule...\n");
                     
                     for (int i = 1; i < 19; i++) {
                         int opponent = result.getInt(i + 3);
@@ -502,6 +546,9 @@ public class FrontEnd {
                         
                     }  // End of for loop
                 }  // End of scheduling loop
+
+                // Separator to create more space between the schedule & the next thing
+                System.out.println(); 
 
                 connection.close();
             } catch (Exception e) {
