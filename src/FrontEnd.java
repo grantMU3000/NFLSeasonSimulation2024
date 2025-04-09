@@ -325,7 +325,7 @@ public class FrontEnd {
                 int num = 1;  // This will be used to display the rank of each team
                 // This will go through each row of the division's table and display column information
                 while (resultSet.next()) {
-                    System.out.printf("%d. %-15s %-15s %d-%d", num, 
+                    System.out.printf("%d.\t %-15s %-15s %d-%d", num, 
                         resultSet.getString(1), resultSet.getString(2), 
                         resultSet.getInt(3), resultSet.getInt(4));
 
