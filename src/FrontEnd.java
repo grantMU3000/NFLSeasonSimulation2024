@@ -309,15 +309,9 @@ public class FrontEnd {
          */
         private static void standingStatement(String division) {
 
-            // Variables used for connecting to the database
-            String url="jdbc:mysql://localhost:3306/NFLSim2024";
-            String username="root";
-            String password="Saaheem2024__";
-
              // Trying to connect to the MySQL Driver. Catching any errors in this process
              try {
-                Class.forName("com.mysql.cj.jdbc.Driver"); // Loads the MySQL Driver
-                Connection connection = DriverManager.getConnection(url, username, password);  // Creates an actual connection
+                Connection connection = jdbcConnection.getConnection();
                 /*
                  * This statement will get information from the given division table.
                  */
@@ -443,21 +437,39 @@ public class FrontEnd {
         }  // End of confToggle method
 
         /**
+         * This method will display all of the NFL teams so that the user can
+         * decide which team's schedule they would like to see.
+         */
+        private static void teamSchedSelect() {
+
+        }  // End of teamSchedSelect method
+
+        /**
+         * This method is a helper method to teamSchedSelect and it will 
+         * display the the teams alphabetically
+         */
+        private static void teamDisplay() {
+            // Trying to connect to the MySQL Driver. Catching any errors in this process
+            try {
+                Connection connection = jdbcConnection.getConnection();
+            } catch (Exception e) {
+                e.getMessage();
+            }
+
+
+        }  // End of teamDisplay
+
+        /**
          * This method will display a team's regular season schedule.
          *  
          * @param team An Integer variable that represents the NFL team's
          *      ID whose schedule will display.
          */
         private static void teamSchedule(int team) {
-            // Variables used for connecting to the database
-            String url="jdbc:mysql://localhost:3306/NFLSim2024";
-            String username="root";
-            String password="Saaheem2024__";
 
             // Trying to connect to the MySQL Driver. Catching any errors in this process
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver"); // Loads the MySQL Driver
-                Connection connection = DriverManager.getConnection(url, username, password);  // Creates an actual connection
+                Connection connection = jdbcConnection.getConnection();
 
                 // This will select the desired team's schedule
                 PreparedStatement teamStatement = connection.prepareStatement(
@@ -496,18 +508,11 @@ public class FrontEnd {
             if (id == 0) {
                 return "Bye Week";
             }
-            // Variables used for connecting to the database
-            String url="jdbc:mysql://localhost:3306/NFLSim2024";
-            String username="root";
-            String password="Saaheem2024__";
-
-            String team = "";
-
+            String team = "";         
+           
             // Trying to connect to the MySQL Driver. Catching any errors in this process
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver"); // Loads the MySQL Driver
-                Connection connection = DriverManager.getConnection(url, username, password);  // Creates an actual connection
-
+                Connection connection = jdbcConnection.getConnection();
                 // Actual SQL statement that will get the team name
                 PreparedStatement teamGetter = connection.prepareStatement(
                     "Select City, Mascot from Teams where id = " + id + ";");
@@ -519,13 +524,14 @@ public class FrontEnd {
                     String mascot = res.getString(2);
 
                     team += city + " " + mascot;
-                }
+                }  // End of while loop
+
+                connection.close();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-            }  // End of try-catch
-            
+            }  // End of try catch block
+
             return team;
-           
         }  // End of getOpponent
 
     }  // End of RegSeason class
@@ -535,6 +541,12 @@ public class FrontEnd {
      */
     private class jdbcConnection {
 
+        /**
+         * This method simply connects to the MySQL database I'm using.
+         * 
+         * @return A Connection variable that represents a connection to my
+         *      database.
+         */
         private static Connection getConnection() {
             // Variables used for connecting to the database
             String url="jdbc:mysql://localhost:3306/NFLSim2024";
