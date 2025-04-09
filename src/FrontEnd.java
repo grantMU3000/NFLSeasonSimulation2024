@@ -100,6 +100,9 @@ public class FrontEnd {
             case 3:
                 RegSeason.teamSchedSelect();
                 break;
+            case 4:
+                RegSeason.leagueSchedule();
+                break;
             case 7: 
                 quit = quitConfirm();
                 break;
@@ -594,6 +597,21 @@ public class FrontEnd {
 
             return team;
         }  // End of getOpponent
+
+        /**
+         * This method will display the slate of games for a given week based
+         * on user input.
+         */
+        private static void leagueSchedule() {
+            System.out.println();
+            // This will display every week in the regular season so the user
+            // can decide which one they want to see
+            for (int i = 1; i <= 18; i++) {
+                System.out.printf("%d.\t Week %d\n", i, i);
+            }  // End of for loop
+            System.out.println();
+        
+        }  // End of leagueSchedule
 
     }  // End of RegSeason class
 
