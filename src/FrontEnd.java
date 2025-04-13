@@ -603,14 +603,21 @@ public class FrontEnd {
          * on user input.
          */
         private static void leagueSchedule() {
-            System.out.println();
-            // This will display every week in the regular season so the user
-            // can decide which one they want to see
-            for (int i = 1; i <= 18; i++) {
-                System.out.printf("%d.\t Week %d\n", i, i);
-            }  // End of for loop
-            System.out.println();
-            
+
+            // This will display the weeks until the user enters a valid number
+            do {
+                System.out.println();
+                // This will display every week in the regular season so the user
+                // can decide which one they want to see
+                for (int i = 1; i <= 18; i++) {
+                    System.out.printf("%d.\t Week %d\n", i, i);
+                }  // End of for loop
+                System.out.println();
+                
+                // Telling the user to pick a week of games
+                System.out.print("Pick a number between 1 & 18 that represents"
+                    + " the weekly slate of games you want displayed: ");
+            } while (!weekInput()); 
         }  // End of leagueSchedule method
 
         /**
@@ -621,8 +628,39 @@ public class FrontEnd {
          *      entered a valid number.
          */
         private static boolean weekInput() {
+            Scanner sc = new Scanner(System.in);
 
+            // Trying to get a valid input from the user, and catching invalid
+            // inputs
+            try {
+                int num = sc.nextInt();
+                
+                // Checking if the input is between 1 & 18
+                if (num >= 1 && num <= 18) {
+                    System.out.println("valid");
+                    return true;
+                }
+
+                throw new InputMismatchException();  // Num not between 1 & 18
+
+            } catch (InputMismatchException e) {
+                System.out.println("You can only enter numbers between 1 & "
+                    + "18!");
+            }  // End of try/catch
+
+            return false;
         }  // End of weekInput method
+
+        /**
+         * This method will display the slate of games for a given week.
+         * 
+         * @param week An integer variable that represents the week of games
+         *      that will be displayed.
+         */
+        private static void displaySlate(int week) {
+            
+        }  // End of displaySlate method
+
     }  // End of RegSeason class
 
     /**
