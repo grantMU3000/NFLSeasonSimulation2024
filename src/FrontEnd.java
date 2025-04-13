@@ -687,21 +687,46 @@ public class FrontEnd {
                         // Getting the opponent's name from their ID
                         String oppName = getTeam(oppId);
 
-                        // If the current team has a bye week this week,
-                        // they're added to the Array List
-                        if (oppName.equals("Bye Week")) {
-                            byes.add(team);
-                        } else {
-                            System.out.printf("%s vs %s\n", team, oppName);
-                        }  // End of bye week index
-
-                    } // End of if oppId > index
+                        
+                        System.out.printf("%s vs %s\n", team, oppName);
+                    } else if (oppId == 0) {
+                        byes.add(team);
+                    }
                     index++;
                 }  // End of while loop
+
+                System.out.println();
+                printByes(byes);  // Displaying the teams with bye weeks
              } catch (Exception e) {
                 System.out.println(e.getMessage());
             }  // End of try/catch
         }  // End of displaySlate method
+
+        /**
+         * Simple method that will print the teams with a bye week for a given 
+         * week.
+         * 
+         * @param byes An ArrayList of Strings that stores the names of teams
+         *       with a bye week during a given week.
+         */
+        public static void printByes(ArrayList<String> byes) {
+            // If there's no teams with a bye week, there's no need for this 
+            // method to be ran. Thus, it's returned.
+            if (byes.size() == 0) {
+                return;
+            }
+
+            System.out.print("Teams with a bye this week: ");
+
+            // This will display all teams with a bye week besides the last one
+            for (int i = 0; i < byes.size() - 1; i++) {
+                System.out.print(byes.get(i) + ", ");
+            }  // End of for loop
+
+            // This will print the very last team with a bye week 
+            // (No comma afterwards, so it's separate)
+            System.out.println(byes.get(byes.size() - 1) + "\n"); 
+        }  // End of printByes method
 
     }  // End of RegSeason class
 
