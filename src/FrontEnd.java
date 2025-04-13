@@ -3,6 +3,7 @@
  * to the user.
  */
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -637,7 +638,7 @@ public class FrontEnd {
                 
                 // Checking if the input is between 1 & 18
                 if (num >= 1 && num <= 18) {
-                    System.out.println("valid");
+                    displaySlate(num);
                     return true;
                 }
 
@@ -658,7 +659,30 @@ public class FrontEnd {
          *      that will be displayed.
          */
         private static void displaySlate(int week) {
-            
+            System.out.println("\n-- Week " + week + " schedule --\n"); 
+
+            // Trying to connect to MySQL database
+            try {
+                Connection connection = jdbcConnection.getConnection();  
+                // Actual SQL statement that will get the schedule for the 
+                // week
+                PreparedStatement statement = connection.prepareStatement(
+                    "Select City, Mascot, week" + week + " from"
+                    + " regSeasonSchedule");
+                ResultSet resSet = statement.executeQuery();
+
+                int index = 1;  // Keeps track of the team I'm checking
+                // Keeps track of teams with bye weeks
+                ArrayList<String> byes = new ArrayList<>(); 
+
+                while (resSet.next()) {
+                    String team = resSet.getString(1) + " " 
+                        + resSet.getString(2);
+                    System.out.println(team);
+                }  // End of while loop
+             } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }  // End of try/catch
         }  // End of displaySlate method
 
     }  // End of RegSeason class
