@@ -675,10 +675,28 @@ public class FrontEnd {
                 // Keeps track of teams with bye weeks
                 ArrayList<String> byes = new ArrayList<>(); 
 
+                // Looping through the table to get the games
                 while (resSet.next()) {
                     String team = resSet.getString(1) + " " 
                         + resSet.getString(2);
-                    System.out.println(team);
+                    
+                    int oppId = resSet.getInt(3);
+                    // Checking if the opponent has been displayed already. If
+                    // not, then they will be displayed now
+                    if (oppId > index) {
+                        // Getting the opponent's name from their ID
+                        String oppName = getTeam(oppId);
+
+                        // If the current team has a bye week this week,
+                        // they're added to the Array List
+                        if (oppName.equals("Bye Week")) {
+                            byes.add(team);
+                        } else {
+                            System.out.printf("%s vs %s\n", team, oppName);
+                        }  // End of bye week index
+
+                    } // End of if oppId > index
+                    index++;
                 }  // End of while loop
              } catch (Exception e) {
                 System.out.println(e.getMessage());
