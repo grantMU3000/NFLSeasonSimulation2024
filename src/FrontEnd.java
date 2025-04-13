@@ -48,9 +48,8 @@ public class FrontEnd {
         System.out.println("2. Display conference standings");
         System.out.println("3. Display a team's schedule");
         System.out.println("4. Display the league's schedule");
-        System.out.println("5. Display team records");
-        System.out.println("6. Advance a week");
-        System.out.println("7. Quit");
+        System.out.println("5. Advance a week");
+        System.out.println("6. Quit");
 
         
 
@@ -64,11 +63,11 @@ public class FrontEnd {
         do {
 
             try {
-                System.out.print("\n Select a number between 1 & 7 based on the options" +
+                System.out.print("\n Select a number between 1 & 6 based on the options" +
             " above, and click enter: ");
                 int num = sc.nextInt();  // Get the user's selection
 
-                if ((num >= 1) && (num <= 7)) {
+                if ((num >= 1) && (num <= 6)) {
                     optionToggle(num);
                     valid = true;  // Valid since the selection was gotten
                 } else {
@@ -104,13 +103,16 @@ public class FrontEnd {
             case 4:
                 RegSeason.leagueSchedule();
                 break;
-            case 7: 
+            case 5:
+                System.out.println("Simulating games...");
+                break;
+            case 6: 
                 quit = quitConfirm();
                 break;
             default:
                 System.out.println("Error!");
         }
-    }
+    }  // End of optionToggle method
 
     /**
      * This method will confirm whether or not the user wants to stop the app
