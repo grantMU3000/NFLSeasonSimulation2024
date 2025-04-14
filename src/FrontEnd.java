@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class FrontEnd {
     // This integer will be used to keep track of what week it is during the season
-    public static int week = 1;
+    public static int progress = 1;
     public static boolean quit = false;
     public static void main(String[] args) {
         // Welcome message for the user
@@ -18,7 +18,7 @@ public class FrontEnd {
 
         do {
             chooseOption();
-        } while (week <= 18 && !quit);
+        } while (progress <= 18 && !quit);
     }
 
     /**
@@ -711,7 +711,7 @@ public class FrontEnd {
          * @param byes An ArrayList of Strings that stores the names of teams
          *       with a bye week during a given week.
          */
-        public static void printByes(ArrayList<String> byes) {
+        private  static void printByes(ArrayList<String> byes) {
             // If there's no teams with a bye week, there's no need for this 
             // method to be ran. Thus, it's returned.
             if (byes.size() == 0) {
@@ -730,7 +730,36 @@ public class FrontEnd {
             System.out.println(byes.get(byes.size() - 1) + "\n"); 
         }  // End of printByes method
 
+        /**
+         * This method will go through each game in the week and simulate them.
+         */
+        private static void playGames() {
+            
+            // Trying to make SQL query calls to simulate the games
+            try {
+                // Setting up a jdbc connection to the database w/ my teams
+                Connection connection = jdbcConnection.getConnection();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }  // End of try/catch
+
+        }  // End of playGames method
+
     }  // End of RegSeason class
+
+    /**
+     * This class will help with game simulations. It will determine odds, 
+     * winners/losers, etc. for each game.
+     */
+    private class gameHandling {
+
+        /* 
+        private static int gameSimulation(String team1, String team2) {
+
+        }  // End of gameSimulation method
+        */
+
+    }  // End of gameHandling class
 
     /**
      * This class is simply used to establish a JDBC to my database.
