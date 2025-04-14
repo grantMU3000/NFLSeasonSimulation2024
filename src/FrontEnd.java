@@ -758,7 +758,7 @@ public class FrontEnd {
                     // If the opponent hasn't been checked before or there's no
                     // bye week, then gameSimulation is called
                     if (oppId != 0 && oppId > index) {
-                        System.out.printf("Simulating game %d\n", index);
+                        gameHandling.gameSimulation(teamId, oppId);
                     }
                     index++;
                 }  // End of while loop
@@ -777,11 +777,51 @@ public class FrontEnd {
      */
     private class gameHandling {
 
-        /* 
-        private static int gameSimulation(int teamID1, int teamID2) {
+        /**
+         * This method will handle the game simulation. It will determine
+         * the winner and loser of games throughout the season.
+         * 
+         * @param teamID1 An integer that represents the ID of one of the 
+         *      teams.
+         * @param teamID2 An integer that represents the ID of the second team.
+         */
+        private static void gameSimulation(int teamID1, int teamID2) {
+            int team1Rate = getRating(teamID1);
+            int team2Rate = getRating(teamID2);
 
+            System.out.printf("%d %d\n", team1Rate, team2Rate);
         }  // End of gameSimulation method
-        */
+
+        /**
+         * This method will get the rating of one of a team.
+         * 
+         * @param teamId An integer that represents the team whose rating will
+         *      be received.
+         * @return An integer that represents the team's rating. (Will be 
+         *      between 1 & 100 where 1 is the worst & 100 is the best).
+         */
+        private static int getRating(int teamId) {
+            // This will try to establish a jdbc and do an SQL query
+            try {
+                Connection connection = jdbcConnection.getConnection();
+                // This statement will get the team rating
+                PreparedStatement statement = connection.prepareStatement(
+                    "Select Rating from teamRatings where teamId = " + teamId
+                    + ";");
+                ResultSet resultSet = statement.executeQuery();
+
+                // This will return the team's rating
+                while (resultSet.next()) {
+                    return resultSet.getInt(1);
+                }  // End of while loop
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            } // End of try catch
+
+            return -1;  // If this is ran, then something went wrong
+        }  // End of getRating method
+        
 
     }  // End of gameHandling class
 
