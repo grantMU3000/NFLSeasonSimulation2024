@@ -789,7 +789,8 @@ public class FrontEnd {
             int team1Rate = getRating(teamID1);
             int team2Rate = getRating(teamID2);
 
-            System.out.printf("%d %d\n", team1Rate, team2Rate);
+            int odds = getOdds(team1Rate, team2Rate);
+            System.out.println(odds);
         }  // End of gameSimulation method
 
         /**
@@ -821,6 +822,33 @@ public class FrontEnd {
 
             return -1;  // If this is ran, then something went wrong
         }  // End of getRating method
+
+        /**
+         * This method will determine the odds of team 1 winning the game
+         * without including home field advantage. The odds will be between
+         * 0 & 100 (non-inclusive).
+         * 
+         * @param team1Rate An integer variable representing team 1's rating.
+         * @param team2Rate An integer variable representing team 2's rating.
+         * 
+         * @return An integer variable that represents the odds of team 1 
+         *      the game.
+         */
+        private static int getOdds(int team1Rate, int team2Rate) {
+            int difference = team1Rate - team2Rate;
+
+            int chance = 50 + difference;
+
+            // If the odds are at/above 100 or at/below 0, then those are
+            // adjusted to 99 & 1 so that the game isn't a guaranteed win.
+            if (chance >= 100) {
+                chance = 99;
+            } else if (chance <= 0) {
+                chance = 1;
+            }  // End of if/else block
+
+            return chance;
+        }  // End of getOdds method
         
 
     }  // End of gameHandling class
