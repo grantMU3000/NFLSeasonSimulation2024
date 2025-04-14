@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class FrontEnd {
     // This integer will be used to keep track of what week it is during the season
-    public static int progress = 1;
+    public static int week = 1;
     public static boolean quit = false;
     public static void main(String[] args) {
         // Welcome message for the user
@@ -18,7 +18,7 @@ public class FrontEnd {
 
         do {
             chooseOption();
-        } while (progress <= 18 && !quit);
+        } while (week <= 18 && !quit);
     }
 
     /**
@@ -105,6 +105,7 @@ public class FrontEnd {
                 break;
             case 5:
                 System.out.println("Simulating games...");
+                RegSeason.playGames();
                 break;
             case 6: 
                 quit = quitConfirm();
@@ -657,11 +658,11 @@ public class FrontEnd {
         /**
          * This method will display the slate of games for a given week.
          * 
-         * @param week An integer variable that represents the week of games
+         * @param slate An integer variable that represents the week of games
          *      that will be displayed.
          */
-        private static void displaySlate(int week) {
-            System.out.println("\n-- Week " + week + " schedule --\n"); 
+        private static void displaySlate(int slate) {
+            System.out.println("\n-- Week " + slate + " schedule --\n"); 
 
             // Trying to connect to MySQL database
             try {
@@ -669,7 +670,7 @@ public class FrontEnd {
                 // Actual SQL statement that will get the schedule for the 
                 // week
                 PreparedStatement statement = connection.prepareStatement(
-                    "Select City, Mascot, week" + week + " from"
+                    "Select City, Mascot, week" + slate + " from"
                     + " regSeasonSchedule");
                 ResultSet resSet = statement.executeQuery();
 
@@ -739,6 +740,29 @@ public class FrontEnd {
             try {
                 // Setting up a jdbc connection to the database w/ my teams
                 Connection connection = jdbcConnection.getConnection();
+
+                // The actual statement that gets the slate of games for the week
+                PreparedStatement statement =  connection.prepareStatement(
+                    "Select teamId, week" + week + " from"
+                    + " regSeasonSchedule");
+                ResultSet resSet = statement.executeQuery();
+
+                int index = 1;  // Keeps track of the team I'm checking in loop
+
+                // While loop that will simulate each game
+                while (resSet.next()) {
+                    // Getting the IDs of each team
+                    int teamId = resSet.getInt(1);
+                    int oppId = resSet.getInt(2);
+
+                    // If the opponent hasn't been checked before or there's no
+                    // bye week, then gameSimulation is called
+                    if (oppId != 0 && oppId > index) {
+                        System.out.printf("Simulating game %d\n", index);
+                    }
+                    index++;
+                }  // End of while loop
+
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }  // End of try/catch
@@ -754,7 +778,7 @@ public class FrontEnd {
     private class gameHandling {
 
         /* 
-        private static int gameSimulation(String team1, String team2) {
+        private static int gameSimulation(int teamID1, int teamID2) {
 
         }  // End of gameSimulation method
         */
