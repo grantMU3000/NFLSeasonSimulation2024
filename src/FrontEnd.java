@@ -758,7 +758,16 @@ public class FrontEnd {
                     // If the opponent hasn't been checked before or there's no
                     // bye week, then gameSimulation is called
                     if (oppId != 0 && oppId > index) {
-                        gameHandling.gameSimulation(teamId, oppId);
+                        int res = gameHandling.gameSimulation(teamId, oppId);
+
+                        // This will ensure the right team information is updated
+                        if (res == 0) {
+                            updateResults(teamId, oppId, true);
+                        } else if (res == 1) {
+                            updateResults(teamId, oppId, false);
+                        } else {
+                            updateResults(oppId, teamId, false);
+                        }
                     }
                     index++;
                 }  // End of while loop
@@ -768,6 +777,51 @@ public class FrontEnd {
             }  // End of try/catch
 
         }  // End of playGames method
+
+        /**
+         * This method will update the team stats after each game. 
+         * (E.g. win/loss.)
+         * 
+         * @param winner An integer variable representing the ID of the winning
+         *      team.
+         * @param loser An integer variable representing the ID of the losing
+         *      team.
+         * 
+         * @param draw A boolean variable that represents whether or not the 
+         *      game was a draw.
+         */
+        private static void updateResults(int winner, int loser, boolean draw) {
+            updateWinner(winner, draw);
+        }  // End of updateResults method
+
+        /**
+         * This method is a helper that will adjust the win & draw column for 
+         * the winning team after each game.
+         * 
+         * @param winner An integer variable representing the ID of the winning
+         *      team.
+         * 
+         * @param draw A boolean variable that represents whether or not the 
+         *      game was a draw.
+         */
+        private static void updateWinner(int winner, boolean draw) {
+            // Trying to connect to the database, and throwing an exception if
+            // something goes wrong
+            try {
+                Connection connection = jdbcConnection.getConnection();
+                // If the game wasn't a draw, win column is updated
+                if (!draw) {
+                    // This will update the win column in the team table
+                    PreparedStatement teamUpdate = connection.prepareStatement(
+                        "Update Teams Set Wins = Wins + 1 where id = " + winner
+                        + ";"
+                    );
+                    teamUpdate.executeUpdate(); 
+                } 
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }  // End of try/catch
+        }  // End of updateWinner method
 
     }  // End of RegSeason class
 
@@ -784,8 +838,10 @@ public class FrontEnd {
          * @param teamID1 An integer that represents the ID of one of the 
          *      teams.
          * @param teamID2 An integer that represents the ID of the second team.
+         * 
+         * @return An integer variable that represents the winner of each game
          */
-        private static void gameSimulation(int teamID1, int teamID2) {
+        private static int gameSimulation(int teamID1, int teamID2) {
             // Getting both teams' rating
             int team1Rate = getRating(teamID1);
             int team2Rate = getRating(teamID2);
@@ -802,9 +858,10 @@ public class FrontEnd {
                 odds -= 10;
             }
 
-            int gameResult = decideWinner(odds);
             odds = oddsAdjustment(odds);
-
+            int gameResult =  decideWinner(odds);
+            
+             
             String team1 = RegSeason.getTeam(teamID1);
             String team2 = RegSeason.getTeam(teamID2);
 
@@ -817,6 +874,8 @@ public class FrontEnd {
             } else {
                 System.out.println("Draw\n");
             }
+            
+            return gameResult;
         }  // End of gameSimulation method
 
         /**
