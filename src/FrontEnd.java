@@ -791,33 +791,51 @@ public class FrontEnd {
          *      game was a draw.
          */
         private static void updateResults(int winner, int loser, boolean draw) {
-            updateWinner(winner, draw);
+            updateTeam(winner, loser, draw);
         }  // End of updateResults method
 
         /**
-         * This method is a helper that will adjust the win & draw column for 
-         * the winning team after each game.
+         * This method is a helper that will update the team table in the
+         * database after each game.
          * 
          * @param winner An integer variable representing the ID of the winning
+         *      team.
+         * 
+         * @param loser An integer variable representing the ID of the losing 
          *      team.
          * 
          * @param draw A boolean variable that represents whether or not the 
          *      game was a draw.
          */
-        private static void updateWinner(int winner, boolean draw) {
+        private static void updateTeam(int winner, int loser, boolean draw) {
             // Trying to connect to the database, and throwing an exception if
             // something goes wrong
             try {
                 Connection connection = jdbcConnection.getConnection();
                 // If the game wasn't a draw, win column is updated
                 if (!draw) {
-                    // This will update the win column in the team table
-                    PreparedStatement teamUpdate = connection.prepareStatement(
+                    // This will update the win/loss columns in the team table
+                    PreparedStatement winUpdate = connection.prepareStatement(
                         "Update Teams Set Wins = Wins + 1 where id = " + winner
                         + ";"
                     );
-                    teamUpdate.executeUpdate(); 
-                } 
+                    PreparedStatement lossUpdate = connection.prepareStatement(
+                        "Update Teams Set Losses = Losses + 1 where id = "
+                        + loser + ";"
+                    );
+                    winUpdate.executeUpdate(); 
+                    lossUpdate.executeUpdate();
+                } else {
+                    // This will update the draw column in the team table
+                    PreparedStatement drawUpdate = connection.prepareStatement(
+                        "Update Teams Set Draws = Draws + 1 where id = ?;"
+                    );
+                    drawUpdate.setInt(1, winner);
+                    drawUpdate.executeUpdate();
+
+                    drawUpdate.setInt(1, loser);
+                    drawUpdate.executeUpdate();
+                }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }  // End of try/catch
@@ -1016,7 +1034,7 @@ public class FrontEnd {
                 return 1;  // Team 1 wins
             } else if (res > odds + 0.2) {
                 return 2; // Team 2 wins
-            }
+            } 
 
             return 0;  // Draw
         }  // End of decideWinner method
