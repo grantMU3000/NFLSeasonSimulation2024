@@ -802,8 +802,21 @@ public class FrontEnd {
                 odds -= 10;
             }
 
-            // Adjusting odds after accounting home team
-            odds = oddsAdjustment(odds);  
+            int gameResult = decideWinner(odds);
+            odds = oddsAdjustment(odds);
+
+            String team1 = RegSeason.getTeam(teamID1);
+            String team2 = RegSeason.getTeam(teamID2);
+
+            System.out.print(odds + ": " + team1 + " vs "+ team2 + ": ");
+
+            if (gameResult == 1) {
+                System.out.printf("%s\n\n", team1);
+            } else if (gameResult == 2) {
+                System.out.printf("%s\n\n", team2);
+            } else {
+                System.out.println("Draw\n");
+            }
         }  // End of gameSimulation method
 
         /**
@@ -921,7 +934,33 @@ public class FrontEnd {
             return false;
         }  // End of checkHome method
         
+        /**
+         * This method will determine the winner of a game based on the 
+         * pre-determined odds.
+         * 
+         * @param odds An integer that represents the percent chance that
+         *      team 1 wins the game.
+         * 
+         * @return An integer that represents the winner of the game. 0, 1, or
+         *      2 will return. 0 means it's a draw, 1 is team 1 winning, and 2
+         *      is team 2 winning.
+         */
+        private static int decideWinner(int odds) {
+            // Returns random number between 0 & 100
+            double res = Math.random() * 101; 
+            
+            // Checking to see who won based on the result & and odds
+            // (If res is between 0 & odds, then team 1 wins)
+            // (If res is greater than odds by 0.2, then team 2 wins)
+            // 0.2 represents the percent chance the game is a draw
+            if (res <= odds) {
+                return 1;  // Team 1 wins
+            } else if (res > odds + 0.2) {
+                return 2; // Team 2 wins
+            }
 
+            return 0;  // Draw
+        }  // End of decideWinner method
     }  // End of gameHandling class
 
     /**
