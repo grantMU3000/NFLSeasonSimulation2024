@@ -786,12 +786,24 @@ public class FrontEnd {
          * @param teamID2 An integer that represents the ID of the second team.
          */
         private static void gameSimulation(int teamID1, int teamID2) {
+            // Getting both teams' rating
             int team1Rate = getRating(teamID1);
             int team2Rate = getRating(teamID2);
 
-            int odds = getOdds(team1Rate, team2Rate);
+            // Game odds determined by ratings & game site
+            int odds = getOdds(team1Rate, team2Rate); 
             boolean home = checkHome(teamID1);
-            System.out.println(teamID1 + ": " + home);
+            // Checking to see which team has home field advantage
+            if (home) {
+                // Team 1 is the home team
+                odds += 10;
+            } else {
+                // Team 2 is the home team
+                odds -= 10;
+            }
+
+            // Adjusting odds after accounting home team
+            odds = oddsAdjustment(odds);  
         }  // End of gameSimulation method
 
         /**
@@ -833,23 +845,41 @@ public class FrontEnd {
          * @param team2Rate An integer variable representing team 2's rating.
          * 
          * @return An integer variable that represents the odds of team 1 
-         *      the game.
+         *      the game (A percentage).
          */
         private static int getOdds(int team1Rate, int team2Rate) {
             int difference = team1Rate - team2Rate;
 
             int chance = 50 + difference;
 
+            // The adjusted likelihood of team 1 winning
+            return oddsAdjustment(chance);  
+        }  // End of getOdds method
+
+        /**
+         * This method will check for the odds being at or above 100, and at or
+         * below 0. The method will then adjust the ratings to 99 or 1. If the
+         * rating is between 1 & 99 (Inclusive), then the original odds are 
+         * returned.
+         * 
+         * @param odds An integer variable that represents the chances of a 
+         *      team winning their game.
+         * 
+         * @return An integer value representing the newly adjusted odds of the
+         *      game.
+         */
+        private static int oddsAdjustment(int odds) {
             // If the odds are at/above 100 or at/below 0, then those are
             // adjusted to 99 & 1 so that the game isn't a guaranteed win.
-            if (chance >= 100) {
-                chance = 99;
-            } else if (chance <= 0) {
-                chance = 1;
+            if (odds >= 100) {
+                return 99;
+            } else if (odds <= 0) {
+                return 1;
             }  // End of if/else block
 
-            return chance;
-        }  // End of getOdds method
+            // This will run if the odds were valid before the method call
+            return odds;  
+        }  // End of oddsAdjustment method
 
         /**
          * This method will check if a team is playing a home or an away game
