@@ -790,16 +790,17 @@ public class FrontEnd {
             int team2Rate = getRating(teamID2);
 
             int odds = getOdds(team1Rate, team2Rate);
-            System.out.println(odds);
+            boolean home = checkHome(teamID1);
+            System.out.println(teamID1 + ": " + home);
         }  // End of gameSimulation method
 
         /**
-         * This method will get the rating of one of a team.
+         * This method will get the rating of a team. (Will be 
+         *      between 1 & 100 where 1 is the worst & 100 is the best.)
          * 
          * @param teamId An integer that represents the team whose rating will
          *      be received.
-         * @return An integer that represents the team's rating. (Will be 
-         *      between 1 & 100 where 1 is the worst & 100 is the best).
+         * @return An integer that represents the team's rating.
          */
         private static int getRating(int teamId) {
             // This will try to establish a jdbc and do an SQL query
@@ -849,6 +850,46 @@ public class FrontEnd {
 
             return chance;
         }  // End of getOdds method
+
+        /**
+         * This method will check if a team is playing a home or an away game
+         * for the week.
+         * 
+         * @param teamId An integer variable that represents the team's ID.
+         * 
+         * @return A boolean variable that's True if the team will play at home
+         *      and False if they play away.
+         */
+        private static boolean checkHome(int teamId) {
+
+            // This segment will connect to the database to get the game site 
+            // of this game.
+            try {
+                Connection connection = jdbcConnection.getConnection();
+
+                // This statement will get the site of the given team's game
+                PreparedStatement statement = connection.prepareStatement(
+                    "Select week" + week + " from gameSite where teamId = " 
+                    + teamId + ";"
+                );  
+                ResultSet result = statement.executeQuery();
+
+                // This will get the site of the game and return true if it's
+                // a home game
+                while (result.next()) {
+                    String site = result.getString(1);
+
+                    if (site.equals("H")) {
+                        return true;
+                    }
+                }
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }  // End of try/catch
+
+            return false;
+        }  // End of checkHome method
         
 
     }  // End of gameHandling class
